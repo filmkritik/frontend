@@ -35,7 +35,7 @@ class HomePage extends React.Component {
         <Navbar />
             </div>
             <div>
-                <p>You're logged into FilmKritik!!</p>           
+                <p>You're logged into FilmKritik!!</p>     
             </div>
             <div>
                 <h2>Popular Movies</h2>

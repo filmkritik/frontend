@@ -3,6 +3,7 @@ import GoogleLogin from 'react-google-login';
 import { Form, Input, Button, Checkbox} from 'antd';
 import { Link } from 'react-router-dom';
 import HomePage from './HomePage';
+//import AuthenticationLogin from "../AuthLoginJWT/AuthenticationLogin";
 
 
 class Login extends Component {
@@ -11,12 +12,22 @@ class Login extends Component {
       this.state = {
           username: '',
           password: '',
-      }
+          //currentUser: null
+      };
+      // redirect to home if already logged in
+      /*if (authenticationService.currentUserValue) { 
+      this.props.history.push('/');
+    }*/
   }
+
+/*componentDidMount() {
+    authenticationLogin.currentUser.subscribe(x => this.setState({ currentUser: x }));
+}*/
 
   responseGoogle=(response) => {
     console.log(response);
     console.log(response.profileObj);
+    window.location.href = 'http://localhost:3000/home';
   }
 
      

@@ -20,7 +20,7 @@ useEffect(() => {
 
 return(    
   <div className='movie-container'>
-     {movies.length > 0 && movies.map((movie) => 
+     {movies.length > 0 && movies.slice(0,10).map((movie) => 
          <MovieTrending key={movie.id} {...movie} />)}
   </div>
 );
