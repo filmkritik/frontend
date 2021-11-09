@@ -11,31 +11,29 @@ const SEARCH_API = "https://api.themoviedb.org/3/search/multi?api_key=04c35731a5
 
 function Navbar() {
 
-    // const { Search } = Input;
-    // const onSearch = value => console.log(value);
-    // const [searchTerm, setSearchTerm]= useState('');
-    // const [movies, setMovies]= useState([]);
+    const { Search } = Input;
+    const onSearch = value => console.log(value);
+    const [searchTerm, setSearchTerm]= useState('');
+    const [movies, setMovies]= useState([]);
 
-    //   const handleOnSubmit = (e) => {
-    //     e.preventDefault();
-    //     if(searchTerm) {
+      const handleOnSubmit = (e) => {
+        //e.preventDefault();
 
-    //     fetch(SEARCH_API + searchTerm)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         console.log(data);
-    //         setMovies(data.results);
-    //         <SearchBar movies={movies}/>
-    //     });
-    //     console.log(window.location);
-        
-    //     setSearchTerm('');
-    //     }
-    // };
+        if(searchTerm) {
 
-    // const handleOnChange = (e) => {
-    //     setSearchTerm(e.target.value);
-    // };
+        fetch(SEARCH_API + searchTerm)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            setMovies(data.results);
+        });
+        setSearchTerm('');
+        }
+    };
+
+    const handleOnChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
     
 
     const logout = () => {
@@ -60,12 +58,24 @@ function Navbar() {
                         <a href="" onSubmit="./PopularPeople.js">People</a>
                         </Link>
                     </div>
-                  
+                    <Link to= {{
+                           pathname: '/home/search',
+                           state: { movies }
+                       }}> 
+                    <form onSubmit={handleOnSubmit}>
                     <div className="topnav-right"> 
-               <Link to='/home/search'>
-<button type="button"  onSubmit="./SearchBar.js">Click the button to search for a Movie/Tv Show/People</button>                
-                </Link>
-                        </div>         
+                    
+                    <Space direction="vertical">
+                       
+                        <Search placeholder="Search for a movie, tv show, person..." value={searchTerm} 
+                                //onChange={handleOnChange}
+                                onClick={handleOnChange}
+                                enterButton/> 
+                                 
+                        </Space>
+                        </div> 
+                        </form>
+                        </Link> 
 
                     <div className="logout-btn">
                          <a className='logout-btn' href="#Logout" onClick={logout}>Logout</a>

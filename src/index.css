@@ -148,3 +148,67 @@ code {
 .movie-info h3 {
   margin: 0;
 }
+
+.shortcut_bar_wrapper {
+  width: 100%;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  margin-top: 10px;
+}
+.MovieMenu{
+  list-style-type: none;
+}
+.MovieMenuButton{
+  margin-left: 15px;
+}
+.MovieDetails{
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+}
+.MoviePhoto{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 450px;
+  min-width: 300px;
+}
+.MoviePhotoDiv{
+padding-left: 100px;
+}
+.MovierButton{
+  border-radius: 50%;
+  display:inline-block;
+  margin: 4px 2px;
+  cursor:pointer;
+  margin-left: 15px;
+}
+.overview{
+  margin-top: 100px;
+}
+.img{
+  display:flex;
+  list-style-type: none;
+  width:50px;
+  height:50px;
+  
+  margin-left:50px;
+  
+}
+.imag{
+  list-style-type: none;
+  display:flex;
+  
+  margin-left:50px;
+}
+
+.home-button{
+  margin-left:50px;
+margin-top: 10px;
+}
+
+.search-bar1{
+  text-align: center;
+}

@@ -14,6 +14,7 @@ import 'antd/dist/antd.css';
 import PopularPeople from "./NavLink_Components/PopularPeople";
 import MovieGenres from "./NavLink_Components/MovieGenresPage";
 import TvShowGenres from "./NavLink_Components/TvShowGenresPage";
+import SearchBar from "./NavLink_Components/SearchBar";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/home/movies" exact component={MovieGenres} />
             <Route path="/home/tvshows" exact component={TvShowGenres} />
             <Route path="/home/people" exact component={PopularPeople} />
+            <Route path="/home/search" exact component={SearchBar} />
             </Switch>
         <Footer />
     </div>
