@@ -16,6 +16,8 @@ import MovieGenres from "./NavLink_Components/MovieGenresPage";
 import TvShowGenres from "./NavLink_Components/TvShowGenresPage";
 import SearchBar from "./NavLink_Components/SearchBar";
 import MovieDetails from "./Components/Movie_Details";
+import TvShowDetails from "./Components/TvShow_Details";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
     <div className ="App">
         <Header />
             <Switch>
+
             <Route path="/" exact component={Login} />
             <Route path="/forgotpassword" exact component={ForgotPassword} />
             <Route path="/signup" exact component={SignUp} />
@@ -32,6 +35,7 @@ function App() {
             <Route path="/home/people" exact component={PopularPeople} />
             <Route path="/home/search" exact component={SearchBar} />
             <Route path="/home/movies/details" exact component={MovieDetails} />
+            <Route path="/home/tvshows/details" exact component={TvShowDetails} />
 
             </Switch>
         <Footer />

@@ -23,12 +23,10 @@ useEffect(() => {
 }, []);
 
 return(    
-    //<Link to= "/home/movies/details">
   <div className='movie-container'>
      {movies.length > 0 && movies.slice(0,10).map((movie) => 
          <Movie key={movie.id} {...movie} />)}
   </div>
-  //</Link>
 );
 }
 
