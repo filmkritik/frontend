@@ -243,4 +243,27 @@ margin-top: 10px;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+
+.signup-container
+{
+    padding-left: 20%;
+    padding-top: 5%;
+    padding-right: 10%;
+    padding-bottom: 7%;
+    max-height: 400px; */
+}
+.signup-container .steps
+{
+    padding-bottom: 5%;
+}
+.signup-container .steps-content{
+    padding-left: 20%;
+}
+.signup-container .steps-action{
+    padding-left: 20%;
+    padding-top: 3%;
+}
+
+.user-profile-container{
+  padding-left: 30px;
 }
