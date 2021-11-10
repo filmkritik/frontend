@@ -16,6 +16,7 @@ import MovieGenres from "./NavLink_Components/MovieGenresPage";
 import TvShowGenres from "./NavLink_Components/TvShowGenresPage";
 import SearchBar from "./NavLink_Components/SearchBar";
 import MovieDetails from "./Components/Movie_Details";
+import UserProfile from "./Components/UserProfile";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/home" exact component={HomePage} />
             <Route path="/home/movies" exact component={MovieGenres} />
             <Route path="/home/tvshows" exact component={TvShowGenres} />
+            <Route path="/home/userprofile" exact component={UserProfile} />
             <Route path="/home/people" exact component={PopularPeople} />
             <Route path="/home/search" exact component={SearchBar} />
             <Route path="/home/movies/details" exact component={MovieDetails} />

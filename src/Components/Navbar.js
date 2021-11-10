@@ -61,11 +61,16 @@ function Navbar() {
                         </Link>
                     </div>
                   
-                    <div className="topnav-right"> 
+                    <div className="home-search"> 
                <Link to='/home/search'>
 <button type="button"  onSubmit="./SearchBar.js">Click the button to search for a Movie/Tv Show/People</button>                
                 </Link>
-                        </div>         
+                        </div>       
+                    <div className = "user-profile">
+                    <Link to='/home/userprofile'>
+                        <a href="" onSubmit="/UserProfile.js">User Profile</a>
+                    </Link>
+                    </div>  
 
                     <div className="logout-btn">
                          <a className='logout-btn' href="#Logout" onClick={logout}>Logout</a>
