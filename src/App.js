@@ -16,6 +16,8 @@ import TvShowDetails from "./Components/TvShow_Details";
 import UserProfile from "./Components/UserProfile";
 import {GlobalProvider} from "./Components/WatchList_State";
 import WatchList from "./Components/WatchList";
+import SecurityCode from "./Components/SecurityCode";
+import ConfirmPassword from "./Components/ConfirmPassword";
 
 
 function App() {
@@ -37,8 +39,8 @@ function App() {
             <Route path="/home/movies/details" exact component={MovieDetails} />
             <Route path="/home/tvshows/details" exact component={TvShowDetails} />
             <Route path="/home/userprofile" exact component={UserProfile} />
-
-
+            <Route path="/securityCode" exact component={SecurityCode} />
+            <Route path="/ConfirmPassword" exact component={ConfirmPassword} />
             <Route path="/home/movies/details/watchlist" exact component={WatchList} />
 
 

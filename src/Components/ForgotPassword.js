@@ -33,7 +33,7 @@ class ForgotPassword extends Component{
       .then(res => res.json())
       .then(data => {
           this.setState({ userId: data});
-          AuthenticationService.postAPI('securityCode', {userId: data});
+          // AuthenticationService.postAPI('securityCode', {userId: data});
           if(data > 0)
           {
             this.props.history.push('/securityCode')

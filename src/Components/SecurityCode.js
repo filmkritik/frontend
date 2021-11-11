@@ -61,7 +61,7 @@ componentDidMount()
       layout='vertical'
     >
           <Form.Item
-            label="SecurityCode"
+            label="Security Code"
             name="securitycode"
             rules={[
               {
