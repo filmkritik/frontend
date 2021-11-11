@@ -14,10 +14,13 @@ import SearchBar from "./NavLink_Components/SearchBar";
 import MovieDetails from "./Components/Movie_Details";
 import TvShowDetails from "./Components/TvShow_Details";
 import UserProfile from "./Components/UserProfile";
+import {GlobalProvider} from "./Components/WatchList_State";
+import WatchList from "./Components/WatchList";
 
 
 function App() {
   return (
+    <GlobalProvider>
     <Router>
     <div className ="App">
         <Header />
@@ -36,11 +39,15 @@ function App() {
             <Route path="/home/userprofile" exact component={UserProfile} />
 
 
+            <Route path="/home/movies/details/watchlist" exact component={WatchList} />
+
+
             </Switch>
         <Footer />
     </div>
 </Router>
-  );
+</GlobalProvider>  
+);
 }
 
 export default App;
