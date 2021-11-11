@@ -236,4 +236,21 @@ margin-top: 10px;
 
 .user-profile-container{
   padding-left: 30px;
+  overflow: auto;
+  height: 400px;
+}
+
+.movie-header{
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.movie-header button{
+  margin-right: 50%;
+}
+
+.movie-name{
+  font-weight: bold;
+  padding-right: 10px;
 }
