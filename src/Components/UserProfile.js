@@ -20,24 +20,24 @@ const [ watchlistDetails, setWatchList ] = useState([]);
 const [ historyDetails, setHistory ] = useState([]);
 
 const RemoveItemFromWatchList = (value) => {
-    console.log(value)
-    for (let [i, item] of watchlistDetails.entries()) {
-        if (item.id == value.id) {
-            var x = watchlistDetails;
-            x.splice(i, 1);
-            console.log(watchlistDetails)
-            setWatchList(x)
-        }
-     }
+    setWatchList(watchlistDetails.filter(function(p) { 
+      return p.id !== value.id 
+    }));
     AuthenticationService.postAPI('removeWatchListItem', {id: value.Id})
 }
 
 const RemoveLikedMovie = (value) => {
+    setLikedMovies(likedMoviesDetails.filter(function(p) { 
+      return p.id !== value.id 
+    }));
     AuthenticationService.postAPI('removeLikedMovie', {id: value.Id})
 }
 
 const RemoveLikedTVShow = (value) => {
 
+    setLikedTVShows(likedTvshowsDetails.filter(function(p) { 
+      return p.id !== value.id 
+    }));
     AuthenticationService.postAPI('removeLikedTvShow', {id: value.Id})
 }
 
@@ -305,7 +305,7 @@ return(
                 likedMoviesDetails && likedMoviesDetails.map( movie => 
                 <div className="movie-header">
                     <div className="movie-name">{movie.name}</div>
-                    <Button type="primary" htmlType="submit" onClick={RemoveLikedMovie(movie)}>
+                    <Button type="primary"  onClick={() => RemoveLikedMovie(movie)}>
           Remove
         </Button>
                 </div>
@@ -319,7 +319,7 @@ return(
                 likedTvshowsDetails && likedTvshowsDetails.map( movie => 
                 <div className="movie-header">
                     <div className="movie-name">{movie.name}</div>
-                    <Button type="primary" htmlType="submit" onClick={RemoveLikedTVShow(movie)}>
+                    <Button type="primary"  onClick={() => RemoveLikedTVShow(movie)}>
           Remove
         </Button>
                 </div>
@@ -333,9 +333,8 @@ return(
                 watchlistDetails && watchlistDetails.map( movie => 
                 <div className="movie-header">
                     <div className="movie-name">{movie.name}</div>
-                    <Button type="primary" onClick={() => RemoveItemFromWatchList(movie)}>
-          Remove
-        </Button>
+
+                    <Button type="primary" onClick={() => RemoveItemFromWatchList(movie)}>Remove</Button>
                 </div>
                 )
             }
