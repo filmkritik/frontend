@@ -254,6 +254,8 @@ margin-top: 10px;
     padding-bottom: 7%;
     /* overflow: auto;
     max-height: 400px; */
+    max-height: 400px;
+>>>>>>> 1288e168d79e4a06534978cd5d276db829908c79
 }
 .signup-container .steps
 {
@@ -337,4 +339,34 @@ align-items: center;
 .ctrl-btn:hover {
   color: var(--secondary);
   cursor: pointer;
-} */
+} */} */
+=======
+  height: 400px;
+}
+
+.movie-header{
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.movie-header button{
+  margin-right: 50%;
+}
+
+.movie-name{
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+.history-container
+{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.history-date{
+  margin-right: 40%;
+}
+>>>>>>> 1288e168d79e4a06534978cd5d276db829908c79
