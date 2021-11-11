@@ -1,16 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { GlobalContext } from "./WatchList_State";
 import '../index.css';
 import Navbar from "./Navbar";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastMovie from "./Cast_Movie";
+//import { Link } from 'react-router-dom';
+
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
 
-const MovieDetails = (props) => {
+const MovieDetails = ({ props }) => {
 
 const location = useLocation();
 //const { details } = props.location.state;
 //console.log("detail:"+{details});
+
+console.log(location);
 
 const [ cred, setCred ] = useState([]);
 
@@ -24,8 +29,18 @@ useEffect(() => {
     });
 }, []);
 
-console.log(props);
-    return (
+const { addMovieToWatchList, watchlist} = useContext(GlobalContext);
+
+console.log(location.state.id);
+console.log(watchlist);
+let storedMovie = watchlist.find(o => o.id === location.id);
+console.log(storedMovie);
+
+const watchListDisabled = storedMovie ? true : false;
+console.log(watchListDisabled);
+
+
+return (
         <div>
         <div>
             <Navbar />
@@ -59,6 +74,12 @@ console.log(props);
                 <h3>Original Language: {location.state.original_language}</h3>  
                 <span>{location.state.vote_average}</span>
                 </div>
+                <div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" className="like-button">
+                            Like
+                        </button>
+                </div>
                 </div>
                 <div >
                     <div style={{paddingLeft:"50px"}}>
@@ -74,15 +95,15 @@ console.log(props);
                         <button className="MovierButton">
                             Rate
                         </button>
-                        <button className="MovierButton">
-                            watchlist
+                        <button className="MovierButton" 
+                        disabled={watchListDisabled}
+                        onClick={() => addMovieToWatchList(location)}>
+                            Add to WatchList
                         </button>
                         <button className="MovierButton">
-                            review
+                            Review
                         </button>
-                        {/* <button className="MovierButton">
-                            Movie
-                        </button> */}
+           
                     </li>
                 </ul>
                 </div>

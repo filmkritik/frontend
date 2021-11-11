@@ -186,6 +186,7 @@ padding-left: 100px;
   cursor:pointer;
   margin-left: 15px;
 }
+
 .overview{
   margin-top: 100px;
 }
@@ -243,6 +244,7 @@ margin-top: 10px;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+}
 
 .signup-container
 {
@@ -250,6 +252,7 @@ margin-top: 10px;
     padding-top: 5%;
     padding-right: 10%;
     padding-bottom: 7%;
+    /* overflow: auto;
     max-height: 400px; */
 }
 .signup-container .steps
@@ -267,3 +270,71 @@ margin-top: 10px;
 .user-profile-container{
   padding-left: 30px;
 }
+
+.like-button{
+align-items: center;
+}
+
+.fa,
+.fab,
+.fad,
+.fal,
+.far,
+.fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+.fa-times:before {
+  content: "\f00d";
+}
+.fa-times-circle:before {
+  content: "\f057";
+}
+.fa.fa-pull-left,
+.fab.fa-pull-left,
+.fal.fa-pull-left,
+.far.fa-pull-left,
+.fas.fa-pull-left {
+  margin-right: 0.3em;
+}
+.fa.fa-pull-right,
+.fab.fa-pull-right,
+.fal.fa-pull-right,
+.far.fa-pull-right,
+.fas.fa-pull-right {
+  margin-left: 0.3em;
+}
+.fab,
+.far {
+  font-weight: 400;
+}
+
+.fa,
+.far,
+.fas {
+  font-family: "Font Awesome 5 Free";
+}
+
+/* .ctrl-btn {
+  color:black;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+  padding: 5px;
+  margin: 0;
+}
+
+.ctrl-btn:hover {
+  color: var(--secondary);
+  cursor: pointer;
+} */
