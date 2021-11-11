@@ -1,7 +1,3 @@
-// import SignUp from './SignUp';
-// import '../Styles/App.css';
-// import '../Styles/SignUp.css';
-
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./Components/Header";

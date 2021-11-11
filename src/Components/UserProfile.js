@@ -97,23 +97,23 @@ useEffect(() => {
       setLikedTVShows([
         {
             id: 1,
-            name: "Venom: Let There Be Carnage"
+            name: "Squid Game"
         },
         {
           id: 2,
-          name: "Eternals"
+          name: "Dark"
       },
       {
           id: 3,
-          name: "Army of Thieves"
+          name: "Money Heist"
       },
       {
           id: 4,
-          name: "Free Guy"
+          name: "Prison Break"
       },
       {
           id: 5,
-          name: "Gunpowder Milkshake"
+          name: "Breaking Bad"
       }
     ])
     setWatchList([
@@ -138,6 +138,25 @@ useEffect(() => {
           name: "Gunpowder Milkshake"
       }
     ])
+
+    setHistory([
+      {
+          id: 1,
+          action_description: "User liked movie: Eternals",
+          action_date: '11/11/2021'
+
+      },
+      {
+        id: 2,
+        action_description: "User added a movie to watch list: Army of Thieves",
+        action_date: '11/11/2021'
+    },
+    {
+        id: 3,
+        action_description: "User disliked a movie: Free Guy",
+        action_date: '11/11/2021'
+    }
+  ])
 
 
 console.log('in hook')
@@ -323,7 +342,12 @@ return(
         </div>
         </TabPane>
         <TabPane tab="History" key="5">
-        Content of Tab Pane 4
+            {historyDetails.map(history => 
+            <div className='history-container'>
+            <div><b>{history.action_description}</b></div>
+            <div className="history-date">{history.action_date}</div>
+            </div>
+            )}
         </TabPane>
     </Tabs>
     </div>

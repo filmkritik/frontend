@@ -285,3 +285,14 @@ margin-top: 10px;
   font-weight: bold;
   padding-right: 10px;
 }
+
+.history-container
+{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.history-date{
+  margin-right: 40%;
+}
