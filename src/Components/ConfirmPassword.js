@@ -19,7 +19,8 @@ class ConfirmPassword extends Component{
       console.log('Success:', values);
       if(values.newpassword === values.confirmpassword)
       {
-        AuthenticationService.postAPI('updateUser', {password: values.password});
+        // AuthenticationService.postAPI('updateUser', {password: values.password});
+        this.props.history.push('/');
       }
 
       };

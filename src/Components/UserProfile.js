@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from '../Components/Navbar';
 import AuthenticationService from "./AuthenticationService";
+import {setCookie, getCookie } from '../Cookies.js'
 
 import { Steps, Tabs, Button, message, Form, Input, Checkbox, Select, Menu, Dropdown, Space, Tooltip } from 'antd';
 
@@ -27,10 +28,17 @@ const RemoveItemFromWatchList = (value) => {
 }
 
 const RemoveLikedMovie = (value) => {
-    setLikedMovies(likedMoviesDetails.filter(function(p) { 
+    // setLikedMovies(likedMoviesDetails.filter(function(p) { 
+    //   return p.id !== value.id 
+    // }));
+    // AuthenticationService.postAPI('removeLikedMovie', {id: value.Id})
+    var z = JSON.parse(getCookie('likedMovies'));
+    var newL = z.filter(function(p) { 
       return p.id !== value.id 
-    }));
-    AuthenticationService.postAPI('removeLikedMovie', {id: value.Id})
+    });
+    console.log(newL)
+    setLikedMovies(newL);
+    setCookie('likedMovies', JSON.stringify(newL), 2);
 }
 
 const RemoveLikedTVShow = (value) => {
@@ -71,28 +79,28 @@ useEffect(() => {
             userId: 2
       });
 
-      setLikedMovies([
-          {
-              id: 1,
-              name: "Venom: Let There Be Carnage"
-          },
-          {
-            id: 2,
-            name: "Eternals"
-        },
-        {
-            id: 3,
-            name: "Army of Thieves"
-        },
-        {
-            id: 4,
-            name: "Free Guy"
-        },
-        {
-            id: 5,
-            name: "Gunpowder Milkshake"
-        }
-      ])
+      // setLikedMovies([
+      //     {
+      //         id: 1,
+      //         name: "Venom: Let There Be Carnage"
+      //     },
+      //     {
+      //       id: 2,
+      //       name: "Eternals"
+      //   },
+      //   {
+      //       id: 3,
+      //       name: "Army of Thieves"
+      //   },
+      //   {
+      //       id: 4,
+      //       name: "Free Guy"
+      //   },
+      //   {
+      //       id: 5,
+      //       name: "Gunpowder Milkshake"
+      //   }
+      // ])
 
       setLikedTVShows([
         {
@@ -159,15 +167,10 @@ useEffect(() => {
   ])
 
 
-console.log('in hook')
 
+    var y = getCookie('likedMovies');
+    setLikedMovies(JSON.parse(y))
 
-    fetch('http://localhost:8080/getLikedMovies')
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        setLikedMovies(data.results);
-    });
 
     fetch('http://localhost:8080/getLikedTVShows')
     .then(res => res.json())

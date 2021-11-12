@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastMovie from "./Cast_Movie";
 //import { Link } from 'react-router-dom';
+import {setCookie, getCookie } from '../Cookies.js'
 
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
@@ -18,6 +19,7 @@ const location = useLocation();
 console.log(location);
 
 const [ cred, setCred ] = useState([]);
+
 
 useEffect(() => {
     // fetch('http://localhost:8080/movie/+{location.state.id}+?api_key=04c35731a5ee918f014970082a0088b1&append_to_response=credits')
@@ -38,6 +40,25 @@ console.log(storedMovie);
 
 const watchListDisabled = storedMovie ? true : false;
 console.log(watchListDisabled);
+
+const onLikeClick = (movie) => {
+    var filterMovie = {
+        id: movie.id,
+        name: movie.title,
+        imgPath: movie.poster_path
+    }
+    var lMovies = getCookie('likedMovies');
+    var x = JSON.parse(lMovies);
+    if(x)
+    {
+        x.push(filterMovie);
+    }
+    else
+    {
+        x = [filterMovie]
+    }
+    setCookie('likedMovies', JSON.stringify(x), 2);
+}
 
 
 return (
@@ -76,7 +97,7 @@ return (
                 </div>
                 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" className="like-button">
+                <button type="button" className="like-button" onClick={() => onLikeClick(location.state)}>
                             Like
                         </button>
                 </div>
