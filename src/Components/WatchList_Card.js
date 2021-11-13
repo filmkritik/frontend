@@ -16,7 +16,6 @@ export const WatchlistCard = ({location, type}) => {
         </div>    
         </div>
         <WatchListControls type={type} location={location} />
-
         </div>
 
 

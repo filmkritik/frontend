@@ -15,7 +15,7 @@ export const WatchListControls = ({location, type}) => {
                     <i className="fa-fw far fa-eye"></i>Watched
                 </button> */}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button onClick={() => removeMovieFromWatchlist(location.state.id)}>
+                <button onClick={() => removeMovieFromWatchlist(location.id)}>
                     <i className="fa-fw far fa-times"></i>Remove
                 </button>
                 </div>

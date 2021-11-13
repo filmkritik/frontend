@@ -4,13 +4,24 @@ import '../index.css';
 import Navbar from "./Navbar";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastMovie from "./Cast_Movie";
-//import { Link } from 'react-router-dom';
-import {setCookie, getCookie } from '../Cookies.js'
+//import { Rate } from 'antd';
+import Reviews from "./Reviews";
+import { Link } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
+import { Container, Radio, Rating } from "./RatingStyles";
+import {setCookie, getCookie } from '../Cookies.js';
+import {setCookieRate, getCookieRate } from '../Cookies.js';
 
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
 
 const MovieDetails = ({ props }) => {
+
+    var pulled_rating;
+
+
+        const [rate, setRate] = useState(0);
+        console.log(rate);
 
 const location = useLocation();
 //const { details } = props.location.state;
@@ -19,7 +30,6 @@ const location = useLocation();
 console.log(location);
 
 const [ cred, setCred ] = useState([]);
-
 
 useEffect(() => {
     // fetch('http://localhost:8080/movie/+{location.state.id}+?api_key=04c35731a5ee918f014970082a0088b1&append_to_response=credits')
@@ -61,6 +71,18 @@ const onLikeClick = (movie) => {
 }
 
 
+// const pull_data =(data) => {
+//     console.log(data);
+// var pulled_rating = data.givenRating;
+//     console.log(pulled_rating);
+//     console.log(location.state.vote_average)
+// location.state.vote_average = (location.state.vote_average + pulled_rating);
+
+// return pulled_rating;
+// }
+// console.log(pull_data.pulled_rating);
+
+// console.log(location.state.vote_average);
 return (
         <div>
         <div>
@@ -93,11 +115,12 @@ return (
                 <img src={Img_API + location.state.poster_path} alt={location.state.title} />
                 <div className="movie-info">
                 <h3>Original Language: {location.state.original_language}</h3>  
-                <span>{location.state.vote_average}</span>
+                <div>{console.log(rate)}</div>
+                <span>{(parseFloat(location.state.vote_average)+parseInt(rate))}</span>
                 </div>
                 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" className="like-button" onClick={() => onLikeClick(location.state)}>
+<button type="button" className="like-button" onClick={() => onLikeClick(location.state)}>
                             Like
                         </button>
                 </div>
@@ -113,17 +136,48 @@ return (
                         <div class="shortcut_bar_wrapper" style={{display:"flex"}}>
                         <ul className="MovieMenu">
                     <li >
-                        <button className="MovierButton">
-                            Rate
-                        </button>
-                        <button className="MovierButton" 
+
+                    <Container>
+	{[...Array(5)].map((item, index) => {
+		const givenRating = index + 1;
+		return (
+		<label>
+			<Radio
+			type="radio"
+			value={givenRating}
+			onClick={() => {
+				setRate(givenRating);
+				alert(`Are you sure you want to give ${givenRating} stars ?`);
+				console.log({givenRating});
+                console.log(location.state.id);
+
+                setCookieRate('ratedMovies', JSON.stringify(location.state.id), JSON.stringify(givenRating), 2);
+			}
+			}
+			/>
+			<Rating>
+			<FaStar
+				color={
+				givenRating < rate || givenRating === rate
+					? "rgb(255,215,0)"
+					: "rgb(192,192,192)"
+				}
+			/>
+			</Rating>
+		</label>
+		);
+	})}
+	</Container>                        
+                        <button 
                         disabled={watchListDisabled}
                         onClick={() => addMovieToWatchList(location)}>
                             Add to WatchList
-                        </button>
-                        <button className="MovierButton">
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <Link to='/home/movies/details/reviews'>
+                        <button onSubmit="./Reviews.js">
                             Review
                         </button>
+                        </Link>
            
                     </li>
                 </ul>

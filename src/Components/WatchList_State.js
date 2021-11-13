@@ -31,6 +31,7 @@ useEffect(() => {
     //actions
     const addMovieToWatchList = (movie) => {
         dispatch({type: "ADD_MOVIE_TO_WATCHLIST", payload: movie });
+        alert('Movie added to your watchlist');
     }
 
     const removeMovieFromWatchlist = (id) => {
