@@ -7,6 +7,8 @@ import TvShowGenres from "../NavLink_Components/TvShowGenresPage";
 import SearchMulti from "./SearchMulti";
 import Navbar from "../Components/Navbar";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
+import {setCookieRate, getCookieRate } from '../Cookies';
+
 
 const SEARCH_API = "https://api.themoviedb.org/3/search/multi?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1&include_adult=false&query=";
 
@@ -20,6 +22,11 @@ function SearchBar() {
     const onSearch = value => console.log(value);
     const [searchTerm, setSearchTerm]= useState('');
     const [movies, setMovies]= useState([]);
+
+var RMovies = getCookieRate('ratedMovies');
+var new_rating = RMovies[RMovies.length-1];
+var movie_id = RMovies.substring(0,RMovies.length-1);
+var x = JSON.parse(new_rating);
 
       const handleOnSubmit = (e) => {
         //e.preventDefault();
@@ -65,7 +72,7 @@ function SearchBar() {
                         </div> 
                         <div className='movie-container'>
                     { movies.length > 0 && movies.slice(0,10).map((movie) => 
-                    <SearchMulti key={movie.id} {...movie} />)}
+                    <SearchMulti key={movie.id} {...movie} movie_id={movie_id} new_rating={new_rating} />)}
                 </div> 
                         </div>
     );

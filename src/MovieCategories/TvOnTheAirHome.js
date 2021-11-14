@@ -4,14 +4,15 @@ import { Link } from 'react-router-dom';
 const Img_API = "https://image.tmdb.org/t/p/w1280";
 
 
-const TvOnTheAirHome = ({ id, name, poster_path, overview, vote_average, original_language, first_air_date}) => ( 
+const TvOnTheAirHome = ({ id, name, poster_path, overview, vote_average, original_language, first_air_date, movie_id, new_rating}) => ( 
         
 <div className='movie'>
 <img src={Img_API + poster_path} alt={name} />   
 
 <div className="movie-info">
   <h4>{name}</h4>
-  <span>{vote_average}</span>&nbsp;&nbsp;
+  {(movie_id == id) ? <span>{parseFloat(vote_average)+parseInt(new_rating)}</span> : <span>{vote_average}</span>}    
+  &nbsp;&nbsp;
     <span className="detail-button">
     <Link to={{
     pathname: "/home/tvshows/details",

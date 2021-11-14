@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import '../index.css';
 import Navbar from "./Navbar";
+import { GlobalContext } from "./WatchList_State";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastTvshow from "./Cast_Tvshow";
-
+import { Container, Radio, Rating } from "./RatingStyles";
+import {setCookie, getCookie } from '../Cookies.js';
+import {setCookieRate, getCookieRate } from '../Cookies.js';
+import { Link } from 'react-router-dom';
+import { FaStar } from "react-icons/fa";
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
 
@@ -12,6 +17,8 @@ const TvShowDetails = (props) => {
 const location = useLocation();
 
 const [ cred, setCred ] = useState([]);
+const [rate, setRate] = useState(0);
+
     
     useEffect(() => {
         // fetch('http://localhost:8080/movie/+{location.state.id}+?api_key=04c35731a5ee918f014970082a0088b1&append_to_response=credits')
@@ -23,7 +30,14 @@ const [ cred, setCred ] = useState([]);
         });
     }, []);
 
-console.log(props);
+    const { addMovieToWatchList, watchlist} = useContext(GlobalContext);
+
+    let storedMovie = watchlist.find(o => o.id === location.state.id);
+console.log(storedMovie);
+
+const watchListDisabled = storedMovie ? true : false;
+console.log(watchListDisabled);
+  console.log(props);
     return (
         <div>
         <div>
@@ -56,7 +70,12 @@ console.log(props);
                 <img src={Img_API + location.state.poster_path} alt={location.state.name} />
                 <div className="movie-info">
                 <h3>Original Language: {location.state.original_language}</h3>  
-                <span>{location.state.vote_average}</span>
+                <span>{(parseFloat(location.state.vote_average)+parseInt(rate))}</span>                </div>
+                <div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" className="like-button">
+                            Like
+                        </button>
                 </div>
                 </div>
                 <div >
@@ -71,15 +90,46 @@ console.log(props);
                         <div class="shortcut_bar_wrapper" style={{display:"flex"}}>
                         <ul className="MovieMenu">
                     <li >
-                        <button className="MovierButton">
-                            Rate
+                    <Container>
+	{[...Array(5)].map((item, index) => {
+		const givenRating = index + 1;
+		return (
+		<label>
+			<Radio
+			type="radio"
+			value={givenRating}
+			onClick={() => {
+				setRate(givenRating);
+				alert(`Are you sure you want to give ${givenRating} stars ?`);
+				console.log({givenRating});
+                console.log(location.state.id);
+
+                setCookieRate('ratedMovies', JSON.stringify(location.state.id), JSON.stringify(givenRating), 2);
+			}
+			}
+			/>
+			<Rating>
+			<FaStar
+				color={
+				givenRating < rate || givenRating === rate
+					? "rgb(255,215,0)"
+					: "rgb(192,192,192)"
+				}
+			/>
+			</Rating>
+		</label>
+		);
+	})}
+	</Container>
+    <button disabled={watchListDisabled} 
+    onClick={() => addMovieToWatchList(location)}>
+                            Add to WatchList
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <Link to='/home/movies/details/reviews'>
+                        <button>
+                            Review
                         </button>
-                        <button className="MovierButton">
-                            watchlist
-                        </button>
-                        <button className="MovierButton">
-                            review
-                        </button>
+                        </Link>
                         {/* <button className="MovierButton">
                             Movie
                         </button> */}

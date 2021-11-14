@@ -45,7 +45,7 @@ const { addMovieToWatchList, watchlist} = useContext(GlobalContext);
 
 console.log(location.state.id);
 console.log(watchlist);
-let storedMovie = watchlist.find(o => o.id === location.id);
+let storedMovie = watchlist.find(o => o.id === location.state.id);
 console.log(storedMovie);
 
 const watchListDisabled = storedMovie ? true : false;

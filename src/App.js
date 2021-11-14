@@ -41,6 +41,7 @@ function App() {
             <Route path="/home/tvshows/details" exact component={TvShowDetails} />
             <Route path="/home/userprofile" exact component={UserProfile} />
             <Route path="/home/movies/details/watchlist" exact component={WatchList} />
+            <Route path="/home/tvshows/details/watchlist" exact component={WatchList} />
             <Route path="/securityCode" exact component={SecurityCode} />
             <Route path="/ConfirmPassword" exact component={ConfirmPassword} />
             <Route path="/home/movies/details/reviews" exact component={Reviews} />

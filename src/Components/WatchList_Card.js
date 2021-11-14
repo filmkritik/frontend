@@ -13,6 +13,7 @@ export const WatchlistCard = ({location, type}) => {
 
         <div className="movie-info">
         <h4>{location.state.title}</h4>
+        <h4>{location.state.name}</h4>
         </div>    
         </div>
         <WatchListControls type={type} location={location} />
