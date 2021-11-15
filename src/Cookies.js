@@ -44,14 +44,14 @@ export const eraseCookieRate = (name) => {
     document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-export const setCookieComment = (name, value, days) => {
+export const setCookieComment = (name, commentId, commentname, desc, days) => {
     var expires = "";
     if (days) {
         var date = new Date();
         date.setTime(date.getTime() + (days*24*60*60*1000));
         expires = "; expires=" + date.toUTCString();
     }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    document.cookie = name + "=" + (commentId || "") + (commentname || "") + (desc || "")  + expires + "; path=/";
 }
 export const  getCookieComment = (name) => {
     var nameEQ = name + "=";

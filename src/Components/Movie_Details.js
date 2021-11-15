@@ -11,7 +11,7 @@ import { FaStar } from "react-icons/fa";
 import { Container, Radio, Rating } from "./RatingStyles";
 import {setCookie, getCookie } from '../Cookies.js';
 import {setCookieRate, getCookieRate } from '../Cookies.js';
-
+import {setCookieComment, getCookieComment } from '../Cookies.js';
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
 
@@ -71,6 +71,9 @@ const onLikeClick = (movie) => {
     setCookie('likedMovies', JSON.stringify(x), 2);
 }
 
+// var x = getCookieComment('ReviewComment');
+// var getComment = JSON.parse(x);
+// console.log(getComment);
 
 // const pull_data =(data) => {
 //     console.log(data);

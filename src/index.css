@@ -401,6 +401,7 @@ align-items: center;
 /* .comment-list {
   list-style: none;
   margin: 0 0 50px 0;
+  width: 20%;
 }
   .comment-list > li {
     margin: 0 0 20px 0;
@@ -427,10 +428,9 @@ align-items: center;
   margin-right: 5px;
 }
 .comment-text {
-  background:whitesmoke;
+  background:white;
   color: #222;
-  padding: 20px;
-  width: 15%;
+  padding-left: 3%;
   height: 10%;
 box-sizing: border-box;
 border-style: inherit;

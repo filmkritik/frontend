@@ -12,18 +12,20 @@ import { getCookieComment } from '../Cookies';
       constructor(props) {
         super(props);
         this.state = {
-          editMode: false
+          editMode: false,
+          commentBody: {
+        id: "",
+        name: "",
+        desc: ""
+          }
         }
       }    
             
         renderCommentRead = () => {
-          var x = getCookieComment('ReviewComment');
-          var getComment = JSON.parse(x);
-          console.log(getComment);
+          
          return (
            <div className="comment-text">
-                {/* <p>{this.props.details.commentBody}</p> */}
-                <p>{getComment}</p>
+                <p>{this.props.details.commentBody}</p>
            </div>
          ) 
         };
@@ -47,9 +49,9 @@ import { getCookieComment } from '../Cookies';
         
         renderCommentEdit = () => {
 
-          var x = getCookieComment('ReviewComment');
-          var getComment = JSON.parse(x);
-          console.log(getComment);
+          // var x = getCookieComment('ReviewComment');
+          // var getComment = JSON.parse(x);
+          // console.log(getComment);
           // var new_rating = RMovies[RMovies.length-1];
           // var movie_id = RMovies.substring(0,RMovies.length-1);
           // var x = JSON.parse(new_rating);
@@ -57,7 +59,7 @@ import { getCookieComment } from '../Cookies';
            <div>
            <div>{console.log(this.props.details.commentBody)}</div>
            <form ref="commentForm" onSubmit={this.editCommentHandler}>
-             <textarea className="text-area-edit" ref="editText" required>{getComment}</textarea>&nbsp;&nbsp;&nbsp;
+             <textarea className="text-area-edit" ref="editText" required>{this.props.details.commentBody}</textarea>&nbsp;&nbsp;&nbsp;
              <button id="submit" type="submit" className="button button-outline comment-button action-button expand-right">Done</button>
            </form>
            </div>
@@ -65,8 +67,8 @@ import { getCookieComment } from '../Cookies';
         };
         
         enterEditMode = () => {
-          var getComment = getCookieComment('ReviewComment');
-          console.log(getComment);
+          // var getComment = getCookieComment('ReviewComment');
+          // console.log(getComment);
           if (!this.state.editMode){
             this.setState({
               editMode: true
@@ -92,7 +94,6 @@ import { getCookieComment } from '../Cookies';
                   <span className="on"> on </span>
                   <a href="#0">
                     <time>
-                      {/* {(new Date()).getTime()} */}
                       {moment().format("DD-MM-YYYY hh:mm:ss")}
                     </time>
                   </a>
