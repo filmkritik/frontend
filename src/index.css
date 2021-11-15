@@ -351,7 +351,7 @@ align-items: center;
 } */
 
 .movie-header{
-  display: flex;
+  /* display: flex; */
   padding: 10px;
   justify-content: space-between;
 }
@@ -363,6 +363,9 @@ align-items: center;
 .movie-name{
   font-weight: bold;
   padding-right: 10px;
+  white-space: break-word;
+  width: 144px;
+  height: 86px;
 }
 
 .history-container
@@ -375,6 +378,7 @@ align-items: center;
 .history-date{
   margin-right: 40%;
 }
+
 
 
 /* {
@@ -476,3 +480,12 @@ border-style: inherit;
 .text-area-edit{
   border-color: black;
 }
+
+.movie-header img{
+  height: 178px;
+}
+
+.movie-top-header{
+  display: flex;
+}
+

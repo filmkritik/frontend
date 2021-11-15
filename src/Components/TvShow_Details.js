@@ -4,20 +4,48 @@ import Navbar from "./Navbar";
 import { GlobalContext } from "./WatchList_State";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastTvshow from "./Cast_Tvshow";
+
 import { Container, Radio, Rating } from "./RatingStyles";
 import {setCookie, getCookie } from '../Cookies.js';
 import {setCookieRate, getCookieRate } from '../Cookies.js';
 import { Link } from 'react-router-dom';
 import { FaStar } from "react-icons/fa";
+import { Button } from "antd";
+
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
+
+
 
 const TvShowDetails = (props) => {
 
 const location = useLocation();
+const [ isLiked , setLikeDisable] = useState(false);
+
 
 const [ cred, setCred ] = useState([]);
+
 const [rate, setRate] = useState(0);
+
+const onLikeTvShowClick = (movie) => {
+    var filterMovie = {
+        id: movie.id,
+        name: movie.title,
+        imgPath: movie.poster_path
+    }
+    var lMovies = getCookie('likedTvShows');
+    var x = JSON.parse(lMovies);
+    if(x)
+    {
+        x.push(filterMovie);
+    }
+    else
+    {
+        x = [filterMovie]
+    }
+    setCookie('likedTvShows', JSON.stringify(x), 5);
+    setLikeDisable(true);
+}
 
     
     useEffect(() => {
@@ -28,6 +56,19 @@ const [rate, setRate] = useState(0);
             console.log(data);
             setCred(data.cast);
         });
+
+        var l = getCookie('likedTvShows');
+        if(l)
+        {
+            var li = JSON.parse(l);
+            var x = li.filter(function(p) { 
+                return p.id == location.state.id 
+              })
+              if(x && x.length > 0)
+              {
+                  setLikeDisable(true);
+              }
+        }
     }, []);
 
     const { addMovieToWatchList, watchlist} = useContext(GlobalContext);
@@ -73,9 +114,11 @@ console.log(watchListDisabled);
                 <span>{(parseFloat(location.state.vote_average)+parseInt(rate))}</span>                </div>
                 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" className="like-button">
+<Button type="primary" className="like-button" onClick={() => onLikeTvShowClick(location.state)}
+                disabled={isLiked}
+                >
                             Like
-                        </button>
+                        </Button>
                 </div>
                 </div>
                 <div >
@@ -90,6 +133,7 @@ console.log(watchListDisabled);
                         <div class="shortcut_bar_wrapper" style={{display:"flex"}}>
                         <ul className="MovieMenu">
                     <li >
+
                     <Container>
 	{[...Array(5)].map((item, index) => {
 		const givenRating = index + 1;

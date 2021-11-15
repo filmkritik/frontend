@@ -8,6 +8,8 @@ import { Steps, Tabs, Button, message, Form, Input, Checkbox, Select, Menu, Drop
 
 const {  TabPane  } = Tabs
 
+const Img_API = "https://image.tmdb.org/t/p/w1280";
+
 function callback(key) {
     console.log(key);
   }
@@ -43,10 +45,13 @@ const RemoveLikedMovie = (value) => {
 
 const RemoveLikedTVShow = (value) => {
 
-    setLikedTVShows(likedTvshowsDetails.filter(function(p) { 
-      return p.id !== value.id 
-    }));
-    AuthenticationService.postAPI('removeLikedTvShow', {id: value.Id})
+  var z = JSON.parse(getCookie('likedTvShows'));
+  var newL = z.filter(function(p) { 
+    return p.id !== value.id 
+  });
+  console.log(newL)
+  setLikedTVShows(newL);
+  setCookie('likedTvShows', JSON.stringify(newL), 2);
 }
 
 const onFinish = (values) => {
@@ -102,28 +107,28 @@ useEffect(() => {
       //   }
       // ])
 
-      setLikedTVShows([
-        {
-            id: 1,
-            name: "Squid Game"
-        },
-        {
-          id: 2,
-          name: "Dark"
-      },
-      {
-          id: 3,
-          name: "Money Heist"
-      },
-      {
-          id: 4,
-          name: "Prison Break"
-      },
-      {
-          id: 5,
-          name: "Breaking Bad"
-      }
-    ])
+    //   setLikedTVShows([
+    //     {
+    //         id: 1,
+    //         name: "Squid Game"
+    //     },
+    //     {
+    //       id: 2,
+    //       name: "Dark"
+    //   },
+    //   {
+    //       id: 3,
+    //       name: "Money Heist"
+    //   },
+    //   {
+    //       id: 4,
+    //       name: "Prison Break"
+    //   },
+    //   {
+    //       id: 5,
+    //       name: "Breaking Bad"
+    //   }
+    // ])
     setWatchList([
         {
             id: 1,
@@ -171,13 +176,16 @@ useEffect(() => {
     var y = getCookie('likedMovies');
     setLikedMovies(JSON.parse(y))
 
+    var z = getCookie('likedTvShows');
+    setLikedTVShows(JSON.parse(z))
 
-    fetch('http://localhost:8080/getLikedTVShows')
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        setLikedMovies(data.results);
-    });
+
+    // fetch('http://localhost:8080/getLikedTVShows')
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     setLikedMovies(data.results);
+    // });
 
     fetch('http://localhost:8080/getHistory')
     .then(res => res.json())
@@ -303,11 +311,14 @@ return(
           </Form>
         </TabPane>
         <TabPane tab="Liked Movies" key="2">
-        <div>
+        <div className="movie-top-header">
             {
                 likedMoviesDetails && likedMoviesDetails.map( movie => 
                 <div className="movie-header">
+                  <div>
+                  <img src={Img_API + movie.imgPath} alt={movie.name} />  
                     <div className="movie-name">{movie.name}</div>
+                  </div>
                     <Button type="primary"  onClick={() => RemoveLikedMovie(movie)}>
           Remove
         </Button>
@@ -321,13 +332,17 @@ return(
             {
                 likedTvshowsDetails && likedTvshowsDetails.map( movie => 
                 <div className="movie-header">
+                  <div>
+                  <img src={Img_API + movie.imgPath} alt={movie.name} />  
                     <div className="movie-name">{movie.name}</div>
+                  </div>
                     <Button type="primary"  onClick={() => RemoveLikedTVShow(movie)}>
           Remove
         </Button>
                 </div>
                 )
             }
+
         </div>
         </TabPane>
         <TabPane tab="Watchlist" key="4">

@@ -11,14 +11,18 @@ const Popular = () => {
 const [ movies, setMovies ] = useState([]);
 
 var RMovies = getCookieRate('ratedMovies');
-console.log(typeof RMovies);
+if(RMovies)
+{
+    console.log(typeof RMovies);
 var x = JSON.parse(RMovies);
-var new_rating = RMovies[RMovies.length-1];
-var movie_id = RMovies.substring(0,RMovies.length-1);
+var new_rating = RMovies && RMovies[RMovies.length-1];
+var movie_id = RMovies.substring(0,RMovies && RMovies.length-1);
 console.log(typeof x);
 console.log(movie_id);
 console.log(new_rating);
 var x = JSON.parse(new_rating);
+}
+
 //     console.log(RMovies)
 //     console.log(RMovies)
 

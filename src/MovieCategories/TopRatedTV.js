@@ -5,11 +5,14 @@ import {setCookieRate, getCookieRate } from '../Cookies';
 const TopRatedTV = () => {   
 
 const [ movies, setMovies ] = useState([]);
-
-var RMovies = getCookieRate('ratedMovies');
+if(RMovies)
+{
+    var RMovies = getCookieRate('ratedMovies');
 var new_rating = RMovies[RMovies.length-1];
 var movie_id = RMovies.substring(0,RMovies.length-1);
 var x = JSON.parse(new_rating);
+
+}
 
 useEffect(() => {
     fetch('http://localhost:8080/tv/topRatedTV')

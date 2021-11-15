@@ -6,10 +6,13 @@ const OnTheAirTV = () => {
 
 const [ movies, setMovies ] = useState([]);
 
-var RMovies = getCookieRate('ratedMovies');
-var new_rating = RMovies[RMovies.length-1];
-var movie_id = RMovies.substring(0,RMovies.length-1);
-var x = JSON.parse(new_rating);
+if(RMovies)
+{
+    var RMovies = getCookieRate('ratedMovies');
+    var new_rating = RMovies[RMovies.length-1];
+    var movie_id = RMovies.substring(0,RMovies.length-1);
+    var x = JSON.parse(new_rating);
+}
 
 useEffect(() => {
     fetch('https://api.themoviedb.org/3/tv/on_the_air?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1')

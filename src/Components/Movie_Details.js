@@ -4,13 +4,18 @@ import '../index.css';
 import Navbar from "./Navbar";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastMovie from "./Cast_Movie";
+
 //import { Rate } from 'antd';
 import Reviews from "./Reviews";
 import { Link } from 'react-router-dom';
+import {setCookie, getCookie } from '../Cookies.js'
 import { FaStar } from "react-icons/fa";
 import { Container, Radio, Rating } from "./RatingStyles";
-import {setCookie, getCookie } from '../Cookies.js';
 import {setCookieRate, getCookieRate } from '../Cookies.js';
+
+//import { Link } from 'react-router-dom';
+import { Button } from "antd";
+
 
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
@@ -20,17 +25,18 @@ const MovieDetails = ({ props }) => {
     var pulled_rating;
     
 
-        const [rate, setRate] = useState(0);
-        console.log(rate);
+    const [rate, setRate] = useState(0);
+    console.log(rate);
 
 const location = useLocation();
 //const { details } = props.location.state;
 //console.log("detail:"+{details});
 
 console.log(location);
-console.log(location.state.id);
 
 const [ cred, setCred ] = useState([]);
+const [ isLiked , setLikeDisable] = useState(false);
+
 
 useEffect(() => {
     // fetch('http://localhost:8080/movie/+{location.state.id}+?api_key=04c35731a5ee918f014970082a0088b1&append_to_response=credits')
@@ -38,8 +44,23 @@ useEffect(() => {
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        setCred(data.cast);
+        setCred(data.cast)
     });
+
+    var l = getCookie('likedMovies');
+    if(l)
+    {
+        var li = JSON.parse(l);
+        var x = li.filter(function(p) { 
+            return p.id == location.state.id 
+          })
+          if(x && x.length > 0)
+          {
+              setLikeDisable(true);
+          }
+    }
+
+
 }, []);
 
 const { addMovieToWatchList, watchlist} = useContext(GlobalContext);
@@ -68,22 +89,11 @@ const onLikeClick = (movie) => {
     {
         x = [filterMovie]
     }
-    setCookie('likedMovies', JSON.stringify(x), 2);
+    setCookie('likedMovies', JSON.stringify(x), 5);
+    setLikeDisable(true);
 }
 
 
-// const pull_data =(data) => {
-//     console.log(data);
-// var pulled_rating = data.givenRating;
-//     console.log(pulled_rating);
-//     console.log(location.state.vote_average)
-// location.state.vote_average = (location.state.vote_average + pulled_rating);
-
-// return pulled_rating;
-// }
-// console.log(pull_data.pulled_rating);
-
-// console.log(location.state.vote_average);
 return (
         <div>
         <div>
@@ -121,9 +131,11 @@ return (
                 </div>
                 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button" className="like-button" onClick={() => onLikeClick(location.state)}>
+                <Button type="primary" className="like-button" onClick={() => onLikeClick(location.state)}
+                disabled={isLiked}
+                >
                             Like
-                        </button>
+                        </Button>
                 </div>
                 </div>
                 <div >
@@ -137,7 +149,6 @@ return (
                         <div class="shortcut_bar_wrapper" style={{display:"flex"}}>
                         <ul className="MovieMenu">
                     <li >
-
                     <Container>
 	{[...Array(5)].map((item, index) => {
 		const givenRating = index + 1;
@@ -169,7 +180,7 @@ return (
 		);
 	})}
 	</Container>                        
-                        <button 
+    <button 
                         disabled={watchListDisabled}
                         onClick={() => addMovieToWatchList(location)}>
                             Add to WatchList
@@ -183,12 +194,10 @@ return (
                             vote_average: location.state.vote_average
                             }
                             }}>
-                        
-                        <button>
+                         <button>
                             Review
                         </button>
-                        </Link>
-           
+                        </Link>           
                     </li>
                 </ul>
                 </div>
