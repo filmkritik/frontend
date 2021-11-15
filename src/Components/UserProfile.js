@@ -23,10 +23,13 @@ const [ watchlistDetails, setWatchList ] = useState([]);
 const [ historyDetails, setHistory ] = useState([]);
 
 const RemoveItemFromWatchList = (value) => {
-    setWatchList(watchlistDetails.filter(function(p) { 
-      return p.id !== value.id 
-    }));
-    AuthenticationService.postAPI('removeWatchListItem', {id: value.Id})
+  var z = JSON.parse(getCookie('watchList'));
+  var newL = z.filter(function(p) { 
+    return p.id !== value.id 
+  });
+  console.log(newL)
+  setWatchList(newL);
+  setCookie('watchList', JSON.stringify(newL), 2);
 }
 
 const RemoveLikedMovie = (value) => {
@@ -129,28 +132,28 @@ useEffect(() => {
     //       name: "Breaking Bad"
     //   }
     // ])
-    setWatchList([
-        {
-            id: 1,
-            name: "Venom: Let There Be Carnage"
-        },
-        {
-          id: 2,
-          name: "Eternals"
-      },
-      {
-          id: 3,
-          name: "Army of Thieves"
-      },
-      {
-          id: 4,
-          name: "Free Guy"
-      },
-      {
-          id: 5,
-          name: "Gunpowder Milkshake"
-      }
-    ])
+    // setWatchList([
+    //     {
+    //         id: 1,
+    //         name: "Venom: Let There Be Carnage"
+    //     },
+    //     {
+    //       id: 2,
+    //       name: "Eternals"
+    //   },
+    //   {
+    //       id: 3,
+    //       name: "Army of Thieves"
+    //   },
+    //   {
+    //       id: 4,
+    //       name: "Free Guy"
+    //   },
+    //   {
+    //       id: 5,
+    //       name: "Gunpowder Milkshake"
+    //   }
+    // ])
 
     setHistory([
       {
@@ -178,6 +181,9 @@ useEffect(() => {
 
     var z = getCookie('likedTvShows');
     setLikedTVShows(JSON.parse(z))
+
+    var z = getCookie('watchList');
+    setWatchList(JSON.parse(z))
 
 
     // fetch('http://localhost:8080/getLikedTVShows')
@@ -328,7 +334,7 @@ return(
         </div>
         </TabPane>
         <TabPane tab="Liked TV Shows" key="3">
-        <div>
+        <div className="movie-top-header">
             {
                 likedTvshowsDetails && likedTvshowsDetails.map( movie => 
                 <div className="movie-header">
@@ -346,6 +352,22 @@ return(
         </div>
         </TabPane>
         <TabPane tab="Watchlist" key="4">
+        <div className="movie-top-header">
+            {
+                watchlistDetails && watchlistDetails.map( movie => 
+                <div className="movie-header">
+                  <div>
+                  <img src={Img_API + movie.imgPath} alt={movie.name} />  
+                    <div className="movie-name">{movie.name}</div>
+                  </div>
+                    <Button type="primary"  onClick={() => RemoveItemFromWatchList(movie)}>
+          Remove
+        </Button>
+                </div>
+                )
+            }
+
+        </div>
         <div>
             {
                 watchlistDetails && watchlistDetails.map( movie => 

@@ -37,6 +37,8 @@ console.log(location);
 const [ cred, setCred ] = useState([]);
 const [ isLiked , setLikeDisable] = useState(false);
 
+const [ isWatched , setWatchDisable] = useState(false);
+
 
 useEffect(() => {
     // fetch('http://localhost:8080/movie/+{location.state.id}+?api_key=04c35731a5ee918f014970082a0088b1&append_to_response=credits')
@@ -57,6 +59,19 @@ useEffect(() => {
           if(x && x.length > 0)
           {
               setLikeDisable(true);
+          }
+    }
+
+    var l = getCookie('watchList');
+    if(l)
+    {
+        var li = JSON.parse(l);
+        var x = li.filter(function(p) { 
+            return p.id == location.state.id 
+          })
+          if(x && x.length > 0)
+          {
+            setWatchDisable(true);
           }
     }
 
@@ -90,6 +105,27 @@ const onLikeClick = (movie) => {
         x = [filterMovie]
     }
     setCookie('likedMovies', JSON.stringify(x), 5);
+    setLikeDisable(true);
+}
+
+
+const onWatchClick = (movie) => {
+    var filterMovie = {
+        id: movie.id,
+        name: movie.title,
+        imgPath: movie.poster_path
+    }
+    var lMovies = getCookie('watchList');
+    var x = JSON.parse(lMovies);
+    if(x)
+    {
+        x.push(filterMovie);
+    }
+    else
+    {
+        x = [filterMovie]
+    }
+    setCookie('watchList', JSON.stringify(x), 5);
     setLikeDisable(true);
 }
 
@@ -179,12 +215,12 @@ return (
 		</label>
 		);
 	})}
-	</Container>                        
-    <button 
-                        disabled={watchListDisabled}
-                        onClick={() => addMovieToWatchList(location)}>
+	</Container>  
+    <Button type="primary" className="like-button" onClick={() => onWatchClick(location.state)}
+                disabled={isWatched}
+                >
                             Add to WatchList
-                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                         <Link to= {{
                             pathname: "/home/movies/details/reviews",
