@@ -27,7 +27,7 @@
             commentBody: this.state.desc
           }
 
-          setCookieComment('ReviewComment', JSON.stringify((new Date()).getTime()), JSON.stringify(this.state.name), JSON.stringify(this.state.desc), 2);
+          setCookieComment('ReviewComment', JSON.stringify(this.state.desc), 2);
       
           // 2. Pass data back to App
           this.props.addComment(commentData);

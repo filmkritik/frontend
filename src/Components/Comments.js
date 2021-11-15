@@ -11,17 +11,8 @@ export default class Comments extends React.Component {
         comments: {}
       };
     
-      // componentDidMount() {
-
-      //   var x = getCookieComment('ReviewComment');
-      // var getComment = JSON.parse(x);
-      // console.log(getComment);
-      // this.setState({comments: getComment});
-      // }
-
     addComment= (commentData) => {
       
-
       var timeStamp = (new Date()).getTime();
       console.log(timeStamp);
       
@@ -31,17 +22,14 @@ export default class Comments extends React.Component {
       this.setState({
         comments: this.state.comments
       });
-      console.log(this.state.comments);
-      // var x = getCookieComment('ReviewComment');
-      // var getComment = JSON.parse(x);
-      // console.log(getComment);
+      console.log(commentData);
     };
     
     editComment= (commentID, editedData) => {
 
-      // var x = getCookieComment('ReviewComment');
-      // var getComment = JSON.parse(x);
-      // console.log(getComment);
+      var x = getCookieComment('ReviewComment');
+      var getComment = JSON.parse(x);
+      console.log(getComment);
 
       this.state.comments[commentID].commentBody = editedData;
       this.setState({
@@ -73,7 +61,8 @@ export default class Comments extends React.Component {
     render () {
       return (
         //   <div className="row medium-8 large-7 columns">
-        <div>            
+        <div>
+            
                   {
                 Object
                   .keys(this.state.comments)
@@ -81,7 +70,9 @@ export default class Comments extends React.Component {
                   .map(this.renderComment)
               }
             
-            <AddCommentForm addComment={this.addComment}/>            
+            <AddCommentForm addComment={this.addComment}/>
+
+            
           
           {/* <pre>{JSON.stringify(this.state, null, 2)}</pre> */}
           
