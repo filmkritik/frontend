@@ -1,69 +1,36 @@
-import React from 'react';
-import { Comment, Tooltip, List } from 'antd';
-import moment from 'moment';
+import React, { useEffect, useState, useContext } from "react";
+import { withRouter,useParams, useLocation, useHistory } from "react-router";
+import Navbar from "./Navbar";
+import ReviewCard from "./ReviewCard";
+import Comments from "./Comments";
 
-const Reviews = () => {
+const Reviews = ({ props }) => {
 
-    console.log("Hi1");
-const data = [
-  {
-    actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: (
-      <p>
-        We supply a series of design principles, practical patterns and high quality design
-        resources (Sketch and Axure), to help people create their product prototypes beautifully and
-        efficiently.
-      </p>
-    ),
-    datetime: (
-      <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-        <span>{moment().subtract(1, 'days').fromNow()}</span>
-      </Tooltip>
-    ),
-  },
-  {
-    actions: [<span key="comment-list-reply-to-0">Reply to</span>],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: (
-      <p>
-        We supply a series of design principles, practical patterns and high quality design
-        resources (Sketch and Axure), to help people create their product prototypes beautifully and
-        efficiently.
-      </p>
-    ),
-    datetime: (
-      <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-        <span>{moment().subtract(2, 'days').fromNow()}</span>
-      </Tooltip>
-    ),
-  },
-];
+    const location = useLocation();
+    const [ reviews, setReviews ] = useState([]);
+        console.log(location.state.id);
 
-return(
-    <div>
-    <div>{console.log("Hi2")}</div>
-  <List
-    className="comment-list"
-    header={`${data.length} replies`}
-    itemLayout="horizontal"
-    dataSource={data}
-    renderItem={item => (
-      <li>
-        <Comment
-          actions={item.actions}
-          author={item.author}
-          avatar={item.avatar}
-          content={item.content}
-          datetime={item.datetime}
-        />
-      </li>
-    )}
-  />
-  </div>
-);
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/movie/${location.state.id}/reviews?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            console.log(location.state.id);
+            setReviews(data.results);
+        });
+    }, []);
+
+    return(    
+        <div>
+        <div>{<Navbar />}</div>
+        <div>{<Comments />}</div>
+        <div className='movie-container'>
+        {reviews.length > 0 && reviews.slice(0,3).map((review) => 
+            <ReviewCard key={review.id} {...review} />)}
+     </div>
+     </div>
+    );
+
 }
 
 export default Reviews;

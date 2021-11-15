@@ -9,7 +9,7 @@ import SearchBar from "../NavLink_Components/SearchBar";
 
 const SEARCH_API = "https://api.themoviedb.org/3/search/multi?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1&include_adult=false&query=";
 
-function Navbar() {
+const Navbar = () => {
 
     // const { Search } = Input;
     // const onSearch = value => console.log(value);
@@ -42,7 +42,7 @@ function Navbar() {
         //authenticationService.logout();
         //history.push('/login')
         console.log();
-            localStorage.clear();
+            // localStorage.clear();
             window.location.href = 'http://localhost:3000';
         };
 

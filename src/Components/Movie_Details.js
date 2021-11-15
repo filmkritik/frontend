@@ -18,7 +18,7 @@ const Img_API = "https://image.tmdb.org/t/p/w1280";
 const MovieDetails = ({ props }) => {
 
     var pulled_rating;
-
+    
 
         const [rate, setRate] = useState(0);
         console.log(rate);
@@ -28,6 +28,7 @@ const location = useLocation();
 //console.log("detail:"+{details});
 
 console.log(location);
+console.log(location.state.id);
 
 const [ cred, setCred ] = useState([]);
 
@@ -173,8 +174,17 @@ return (
                         onClick={() => addMovieToWatchList(location)}>
                             Add to WatchList
                         </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Link to='/home/movies/details/reviews'>
-                        <button onSubmit="./Reviews.js">
+
+                        <Link to= {{
+                            pathname: "/home/movies/details/reviews",
+                            state: {id: location.state.id,
+                            title: location.state.title,
+                            poster_path: location.state.poster_path, 
+                            vote_average: location.state.vote_average
+                            }
+                            }}>
+                        
+                        <button>
                             Review
                         </button>
                         </Link>
