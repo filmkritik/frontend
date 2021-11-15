@@ -47,6 +47,25 @@ const onLikeTvShowClick = (movie) => {
     }
     setCookie('likedTvShows', JSON.stringify(x), 5);
     setLikeDisable(true);
+
+    var hist  = getCookie('fhistory');
+    var t = JSON.parse(hist);
+    
+    var hh = {
+        id: movie.id,
+        action_description: "User liked the TV show: " + movie.title,
+        action_date: new Date(Date.now())
+    }
+    if(t)
+    {
+        t.push(hh)
+    }
+    else
+    {
+        t = [hh]
+    }
+    setCookie('fhistory', JSON.stringify(t), 5);
+
 }
 
 const onWatchClick = (movie) => {
@@ -66,7 +85,25 @@ const onWatchClick = (movie) => {
         x = [filterMovie]
     }
     setCookie('watchList', JSON.stringify(x), 5);
-    setLikeDisable(true);
+    setWatchDisable(true);
+
+    var hist  = getCookie('fhistory');
+    var t = JSON.parse(hist);
+    var hh = {
+        id: movie.id,
+        action_description: "User added movie to watch list: " + movie.title,
+        action_date: new Date(Date.now())
+    }
+    if(t)
+    {
+        t.push(hh)
+    }
+    else
+    {
+        t = [hh]
+    }
+    setCookie('fhistory', JSON.stringify(t), 5);
+
 }
 
     

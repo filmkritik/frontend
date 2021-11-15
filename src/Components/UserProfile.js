@@ -29,7 +29,7 @@ const RemoveItemFromWatchList = (value) => {
   });
   console.log(newL)
   setWatchList(newL);
-  setCookie('watchList', JSON.stringify(newL), 2);
+  setCookie('watchList', JSON.stringify(newL), 5);
 }
 
 const RemoveLikedMovie = (value) => {
@@ -43,7 +43,7 @@ const RemoveLikedMovie = (value) => {
     });
     console.log(newL)
     setLikedMovies(newL);
-    setCookie('likedMovies', JSON.stringify(newL), 2);
+    setCookie('likedMovies', JSON.stringify(newL), 5);
 }
 
 const RemoveLikedTVShow = (value) => {
@@ -54,7 +54,7 @@ const RemoveLikedTVShow = (value) => {
   });
   console.log(newL)
   setLikedTVShows(newL);
-  setCookie('likedTvShows', JSON.stringify(newL), 2);
+  setCookie('likedTvShows', JSON.stringify(newL), 5);
 }
 
 const onFinish = (values) => {
@@ -155,24 +155,24 @@ useEffect(() => {
     //   }
     // ])
 
-    setHistory([
-      {
-          id: 1,
-          action_description: "User liked movie: Eternals",
-          action_date: '11/11/2021'
+  //   setHistory([
+  //     {
+  //         id: 1,
+  //         action_description: "User liked movie: Eternals",
+  //         action_date: '11/11/2021'
 
-      },
-      {
-        id: 2,
-        action_description: "User added a movie to watch list: Army of Thieves",
-        action_date: '11/11/2021'
-    },
-    {
-        id: 3,
-        action_description: "User disliked a movie: Free Guy",
-        action_date: '11/11/2021'
-    }
-  ])
+  //     },
+  //     {
+  //       id: 2,
+  //       action_description: "User added a movie to watch list: Army of Thieves",
+  //       action_date: '11/11/2021'
+  //   },
+  //   {
+  //       id: 3,
+  //       action_description: "User disliked a movie: Free Guy",
+  //       action_date: '11/11/2021'
+  //   }
+  // ])
 
 
 
@@ -182,8 +182,11 @@ useEffect(() => {
     var z = getCookie('likedTvShows');
     setLikedTVShows(JSON.parse(z))
 
-    var z = getCookie('watchList');
-    setWatchList(JSON.parse(z))
+    var k = getCookie('watchList');
+    setWatchList(JSON.parse(k))
+
+    var f  = getCookie('fhistory')
+    setHistory(JSON.parse(f));
 
 
     // fetch('http://localhost:8080/getLikedTVShows')
@@ -193,20 +196,20 @@ useEffect(() => {
     //     setLikedMovies(data.results);
     // });
 
-    fetch('http://localhost:8080/getHistory')
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        setHistory(data.results);
-    });
+    // fetch('http://localhost:8080/getHistory')
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     setHistory(data.results);
+    // });
 
 
-    fetch('http://localhost:8080/getWatchList')
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        setWatchList(data.results);
-    });
+    // fetch('http://localhost:8080/getWatchList')
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     setWatchList(data.results);
+    // });
 
     // fetch('http://localhost:8080/getUserDetails')
     // .then(res => res.json())
@@ -368,20 +371,9 @@ return(
             }
 
         </div>
-        <div>
-            {
-                watchlistDetails && watchlistDetails.map( movie => 
-                <div className="movie-header">
-                    <div className="movie-name">{movie.name}</div>
-
-                    <Button type="primary" onClick={() => RemoveItemFromWatchList(movie)}>Remove</Button>
-                </div>
-                )
-            }
-        </div>
         </TabPane>
         <TabPane tab="History" key="5">
-            {historyDetails.map(history => 
+            {historyDetails && historyDetails.map(history => 
             <div className='history-container'>
             <div><b>{history.action_description}</b></div>
             <div className="history-date">{history.action_date}</div>

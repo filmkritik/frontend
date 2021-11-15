@@ -62,11 +62,11 @@ useEffect(() => {
           }
     }
 
-    var l = getCookie('watchList');
-    if(l)
+    var k = getCookie('watchList');
+    if(k)
     {
-        var li = JSON.parse(l);
-        var x = li.filter(function(p) { 
+        let li = JSON.parse(k);
+        let x = li.filter(function(p) { 
             return p.id == location.state.id 
           })
           if(x && x.length > 0)
@@ -106,17 +106,35 @@ const onLikeClick = (movie) => {
     }
     setCookie('likedMovies', JSON.stringify(x), 5);
     setLikeDisable(true);
+
+    var hist  = getCookie('fhistory');
+    var t = JSON.parse(hist);
+    var hh = {
+        id: movie.id,
+        action_description: "User liked a movie: " + movie.title,
+        action_date: new Date(Date.now())
+    }
+    if(t)
+    {
+        t.push(hh)
+    }
+    else
+    {
+        t = [hh]
+    }
+    setCookie('fhistory', JSON.stringify(t), 5);
+
 }
 
 
 const onWatchClick = (movie) => {
-    var filterMovie = {
+    let filterMovie = {
         id: movie.id,
         name: movie.title,
         imgPath: movie.poster_path
     }
-    var lMovies = getCookie('watchList');
-    var x = JSON.parse(lMovies);
+    let lMovies = getCookie('watchList');
+    let x = JSON.parse(lMovies);
     if(x)
     {
         x.push(filterMovie);
@@ -126,7 +144,24 @@ const onWatchClick = (movie) => {
         x = [filterMovie]
     }
     setCookie('watchList', JSON.stringify(x), 5);
-    setLikeDisable(true);
+    setWatchDisable(true);
+
+    var hist  = getCookie('fhistory');
+    var t = JSON.parse(hist);
+    var hh = {
+        id: movie.id,
+        action_description: "User added movie to watch list: " + movie.title,
+        action_date: new Date(Date.now())
+    }
+    if(t)
+    {
+        t.push(hh)
+    }
+    else
+    {
+        t = [hh]
+    }
+    setCookie('fhistory', JSON.stringify(t), 5);
 }
 
 
