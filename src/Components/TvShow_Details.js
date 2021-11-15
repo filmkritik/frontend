@@ -170,7 +170,7 @@ console.log(watchListDisabled);
                 <img src={Img_API + location.state.poster_path} alt={location.state.name} />
                 <div className="movie-info">
                 <h3>Original Language: {location.state.original_language}</h3>  
-                <span>{(parseFloat(location.state.vote_average)+parseInt(rate))}</span>                </div>
+                <span>{parseFloat(location.state.vote_average + (rate/10))}</span>                </div>
                 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <Button type="primary" className="like-button" onClick={() => onLikeTvShowClick(location.state)}

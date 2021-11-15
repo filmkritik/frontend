@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Movie from './MoviePopular.js';
 import MovieDetails from "../Components/Movie_Details";
 import { Link } from 'react-router-dom';
-import {setCookieRate, getCookieRate } from '../Cookies';
+import {setCookieRate, getCookieRate,eraseCookieRate } from '../Cookies';
 
 
 
@@ -13,10 +13,10 @@ const [ movies, setMovies ] = useState([]);
 var RMovies = getCookieRate('ratedMovies');
 if(RMovies)
 {
-    console.log(typeof RMovies);
-var x = JSON.parse(RMovies);
-var new_rating = RMovies && RMovies[RMovies.length-1];
-var movie_id = RMovies.substring(0,RMovies && RMovies.length-1);
+console.log(typeof RMovies);
+// var x = JSON.parse(RMovies);
+var new_rating = RMovies[RMovies.length-1];
+var movie_id = RMovies.substring(0,RMovies.length-1);
 console.log(typeof x);
 console.log(movie_id);
 console.log(new_rating);

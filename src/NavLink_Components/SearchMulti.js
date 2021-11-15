@@ -12,7 +12,7 @@ const SearchMulti = ({ id, name, title, poster_path, overview, vote_average, ori
   <h3>{title}</h3>
   <h3>{name}</h3>
 
-  {(movie_id == id) ? <span>{parseFloat(vote_average)+parseInt(new_rating)}</span> : <span>{vote_average}</span>}
+  {(movie_id == id) ? <span>{parseFloat(vote_average)+parseInt(new_rating/10)}</span> : <span>{vote_average}</span>}
     
     &nbsp;&nbsp;
       <span className="detail-button">

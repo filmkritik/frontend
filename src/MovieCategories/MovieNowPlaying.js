@@ -11,7 +11,7 @@ const MovieNowPlaying = ({ id, title, poster_path, overview, vote_average, origi
 
 <div className="movie-info">
   <h4>{title}</h4>
-  {(movie_id == id) ? <span>{parseFloat(vote_average)+parseInt(new_rating)}</span> : <span>{vote_average}</span>}
+  {(movie_id == id) ? <span>{parseFloat(vote_average + (new_rating/10))}</span> : <span>{vote_average}</span>}
     
     &nbsp;&nbsp;
     <span className="detail-button">

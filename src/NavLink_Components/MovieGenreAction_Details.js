@@ -10,7 +10,7 @@ const MovieGenreActionDetails = ({ id, title, poster_path, overview, vote_averag
 <img src={Img_API + poster_path} alt={title} />   
 <div className="movie-info">
   <h3>{title}</h3>
-  {(movie_id == id) ? <span>{parseFloat(vote_average)+parseInt(new_rating)}</span> : <span>{vote_average}</span>}
+  {(movie_id == id) ? <span>{parseFloat(vote_average + (new_rating/10))}</span> : <span>{vote_average}</span>}
     
     &nbsp;&nbsp;
       <span className="detail-button">

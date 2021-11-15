@@ -50,6 +50,9 @@ const Navbar = () => {
             <div class="topnav">
                 <div className="nav-left-items">
                     <div class='nav-left'>
+                    <Link to='/home'>
+                        <a class="active" href="">Home</a>
+                        </Link>
                         <Link to='/home/movies'>
                         <a class="active" href="" onSubmit="./MovieGenresPage.js">Movies</a>
                         </Link>

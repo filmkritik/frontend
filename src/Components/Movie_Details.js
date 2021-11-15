@@ -78,7 +78,7 @@ useEffect(() => {
 
 }, []);
 
-const { addMovieToWatchList, watchlist} = useContext(GlobalContext);
+const { addMovieToWatchList, watchlist } = useContext(GlobalContext);
 
 console.log(location.state.id);
 console.log(watchlist);
@@ -198,7 +198,7 @@ return (
                 <div className="movie-info">
                 <h3>Original Language: {location.state.original_language}</h3>  
                 <div>{console.log(rate)}</div>
-                <span>{(parseFloat(location.state.vote_average)+parseInt(rate))}</span>
+                <span>{(parseFloat(location.state.vote_average)+parseFloat(rate/10))}</span>
                 </div>
                 <div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
