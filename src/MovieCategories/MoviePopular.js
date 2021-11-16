@@ -1,3 +1,5 @@
+//File to display rendered movies from API for Popular category
+
 import React from "react";
 import MovieDetails from "../Components/Movie_Details";
 import { Link } from 'react-router-dom';

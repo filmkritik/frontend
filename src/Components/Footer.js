@@ -1,3 +1,5 @@
+//Footer file to display in every page of the application
+
 import React from "react";
 
 const Footer = props => {

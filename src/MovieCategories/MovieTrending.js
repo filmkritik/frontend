@@ -1,3 +1,5 @@
+//File to display rendered movies from API for Trending category
+
 import React from "react";
 import { Link } from 'react-router-dom';
 

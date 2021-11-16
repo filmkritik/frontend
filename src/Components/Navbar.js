@@ -1,3 +1,5 @@
+//This file holds all the links displayed in Navbar of the application
+
 import React, { useEffect, useState, Component } from "react";
 import { Input, Space } from 'antd';
 import PopularPeople from '../NavLink_Components/PopularPeople';

@@ -1,3 +1,5 @@
+//Authentication Service for GET and POST APIs from backend
+
 const API_URL = 'http://localhost:8080'
 
 class AuthenticationService {

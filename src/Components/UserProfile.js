@@ -1,3 +1,5 @@
+//User profile page from Navbar
+
 import React, { useEffect, useState } from "react";
 import Navbar from '../Components/Navbar';
 import AuthenticationService from "./AuthenticationService";

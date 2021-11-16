@@ -1,3 +1,5 @@
+//This file holds the logic of calling all TV shows Genre components
+
 import React from 'react';
 import Navbar from '../Components/Navbar';
 import TvGenreAct_Adv from './TvGenre_Action_Adv';

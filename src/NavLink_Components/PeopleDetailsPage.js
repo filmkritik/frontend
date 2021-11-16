@@ -1,3 +1,5 @@
+//When the user clicks on Details button on any Popular Person tile, this page renders display the person's details
+
 import React from "react";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 

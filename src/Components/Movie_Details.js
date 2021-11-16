@@ -1,3 +1,5 @@
+//This file provides details of the movie selected when the user clicks on the Details button on the movie tile
+
 import React, { useEffect, useState, useContext } from "react";
 import { GlobalContext } from "./WatchList_State";
 import '../index.css';

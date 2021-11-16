@@ -1,3 +1,5 @@
+//to get all security questions during Forgot password phase from backend 
+
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Button, message, Form, Input, Checkbox } from 'antd';

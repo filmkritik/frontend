@@ -1,3 +1,5 @@
+//File to fetch movies from API for NowPlaying category
+
 import React, { useEffect, useState } from "react";
 import MovieNowPlaying from './MovieNowPlaying';
 import {setCookieRate, getCookieRate } from '../Cookies';

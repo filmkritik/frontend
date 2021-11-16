@@ -1,3 +1,5 @@
+//Logic for fetching movies list by Action and Adventure genre and passing the array to TvGenreAct_Adv_Details page
+
 import React, { useEffect, useState } from "react";
 import TvGenreAct_Adv_Details from "./TvGenreAct_Adv_Details";
 import {setCookieRate, getCookieRate } from '../Cookies';

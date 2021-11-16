@@ -1,3 +1,5 @@
+//This file provides details of the Tvshow selected when the user clicks on the Details button on the Tvshow tile
+
 import React, { useEffect, useState, useContext } from "react";
 import '../index.css';
 import Navbar from "./Navbar";
@@ -14,7 +16,6 @@ import { Button } from "antd";
 
 
 const Img_API = "https://image.tmdb.org/t/p/w1280";
-
 
 
 const TvShowDetails = (props) => {

@@ -1,3 +1,5 @@
+// logic for removing selected movie/tv show from watchlist
+
 import React, {useContext} from 'react';
 import WatchList from './WatchList';
 import { GlobalContext } from './WatchList_State';

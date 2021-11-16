@@ -1,3 +1,5 @@
+//Display logic of watchlisted movies/tv shows
+
 import React from 'react';
 import { WatchListControls } from './WatchListControls';
 

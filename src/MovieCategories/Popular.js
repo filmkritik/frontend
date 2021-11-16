@@ -1,10 +1,10 @@
+//File to fetch movies from API for Popular category
+
 import React, { useEffect, useState } from "react";
 import Movie from './MoviePopular.js';
 import MovieDetails from "../Components/Movie_Details";
 import { Link } from 'react-router-dom';
 import {setCookieRate, getCookieRate,eraseCookieRate } from '../Cookies';
-
-
 
 const Popular = () => {   
 

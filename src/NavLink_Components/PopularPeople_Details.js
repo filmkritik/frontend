@@ -1,3 +1,5 @@
+//Displaying details of Popular people when the user clicks on People link in Navbar
+
 import React from "react";
 import { Link } from 'react-router-dom';
 

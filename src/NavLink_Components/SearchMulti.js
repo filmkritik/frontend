@@ -1,3 +1,5 @@
+//Displays the movie or TV shows or People details searched from Searchbar
+
 import React from "react";
 import { Link } from 'react-router-dom';
 

@@ -1,3 +1,5 @@
+//Logic for fetching movies list by Action genre and passing the array to MovieGenreActionDetails page
+
 import React, { useEffect, useState } from "react";
 import MovieGenreActionDetails from "./MovieGenreAction_Details";
 import {setCookieRate, getCookieRate } from '../Cookies';

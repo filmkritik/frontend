@@ -1,3 +1,5 @@
+//Fetching popular people from the API and passing the data to PopularPeopleDetails page for display
+
 import React, { useEffect, useState } from "react";
 import PopularPeopleDetails from './PopularPeople_Details';
 import Navbar from '../Components/Navbar';

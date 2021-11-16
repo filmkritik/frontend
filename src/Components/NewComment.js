@@ -1,6 +1,5 @@
 /*
-    Newcomment
-    <NewComment />
+    Newcomment that the user can provide in reviews page
   */
     import { Comment, Avatar, Form, Button, List, Input } from 'antd';
     import moment from 'moment';

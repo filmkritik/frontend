@@ -1,3 +1,5 @@
+//File to fetch Tv shows from API for Popular TV category
+
 import React, { useEffect, useState } from "react";
 import TvPopularHome from './TvPopularHome';
 import {setCookieRate, getCookieRate } from '../Cookies';

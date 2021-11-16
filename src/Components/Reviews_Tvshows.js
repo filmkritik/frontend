@@ -1,3 +1,5 @@
+//Logic for the movie reviews page
+
 import React, { useEffect, useState, useContext } from "react";
 import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import Navbar from "./Navbar";

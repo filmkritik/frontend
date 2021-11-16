@@ -1,3 +1,5 @@
+//fetching watchlist array based on the movies or TV shows added to watchlist and sending the data to WatchlistCard for display
+
 import React, { useContext } from "react";
 import { GlobalContext } from "./WatchList_State";
 import { WatchListControls } from "./WatchListControls";

@@ -1,3 +1,5 @@
+//Index.js is traditional entry point for all node apps and helps in rendering the application
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

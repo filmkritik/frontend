@@ -1,3 +1,5 @@
+//File to fetch movies from API for Upcoming category
+
 import React, { useEffect, useState } from "react";
 import MovieUpcoming from './MovieUpcoming';
 import {setCookieRate, getCookieRate } from '../Cookies';

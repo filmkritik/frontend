@@ -1,3 +1,5 @@
+//File to fetch Tv shows from API for Airting TopRated TV category
+
 import React, { useEffect, useState } from "react";
 import TvTopRatedHome from './TvTopRatedHome';
 import {setCookieRate, getCookieRate } from '../Cookies';

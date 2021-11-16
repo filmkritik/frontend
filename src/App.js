@@ -1,3 +1,5 @@
+//App.js is the starting point of the application that is bootstrapping in index.js
+
 import React from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Header from "./Components/Header";

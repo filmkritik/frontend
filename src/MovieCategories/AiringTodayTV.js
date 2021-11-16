@@ -1,3 +1,5 @@
+//File to fetch Tv shows from API for Airting Today TV category
+
 import React, { useEffect, useState } from "react";
 import TvAiringTodayHome from './TvAiringTodayHome';
 import {setCookieRate, getCookieRate } from '../Cookies';

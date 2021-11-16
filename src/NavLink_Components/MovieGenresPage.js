@@ -1,3 +1,5 @@
+//This file holds the logic of calling all Movie Genre components
+
 import React from 'react';
 import Navbar from '../Components/Navbar';
 import MovieGenreAction from './MovieGenre_Action';

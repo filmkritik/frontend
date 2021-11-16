@@ -1,3 +1,5 @@
+//File to fetch movies from API for TopRated category
+
 import React, { useEffect, useState } from "react";
 import MovieTopRated from './MovieTopRated';
 import {setCookieRate, getCookieRate } from '../Cookies';

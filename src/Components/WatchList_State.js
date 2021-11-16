@@ -1,3 +1,5 @@
+//Logic for Glocal context in local storage
+
 import React, { createContext, useReducer, useEffect } from 'react';
 import AppReducer from './AppReducer';
 

@@ -1,3 +1,5 @@
+//File to fetch movies from API for Trending category
+
 import React, { useEffect, useState } from "react";
 import MovieTrending from './MovieTrending.js';
 import {setCookieRate, getCookieRate, eraseCookieRate } from '../Cookies';

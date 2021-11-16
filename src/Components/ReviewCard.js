@@ -1,3 +1,5 @@
+//This file holds the logic of displaying reviews in reviews page
+
 import React from "react";
 import { Comment, Tooltip, List } from 'antd';
 import moment from 'moment';

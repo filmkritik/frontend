@@ -1,3 +1,5 @@
+//Logic for SearchBar button in the application Navbar 
+
 import React, { useEffect, useState, Component } from "react";
 import { Button, Input, Space } from 'antd';
 import PopularPeople from '../NavLink_Components/PopularPeople';

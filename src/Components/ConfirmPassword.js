@@ -1,3 +1,5 @@
+//File for Confirm Password in Login page
+
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 import { Button, message, Form, Input, Checkbox } from 'antd';
@@ -9,8 +11,6 @@ class ConfirmPassword extends Component{
     super(props);
 
   }
-
-
 
   render()
   {

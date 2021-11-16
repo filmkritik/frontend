@@ -1,3 +1,5 @@
+//To set, get and erase cookies
+
 export const setCookie = (name,value,days) => {
     var expires = "";
     if (days) {

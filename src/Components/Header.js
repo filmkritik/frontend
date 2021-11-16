@@ -1,3 +1,5 @@
+//Header file to display in every page of the application
+
 import React from "react";
 
 const Header = props => {

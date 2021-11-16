@@ -1,3 +1,5 @@
+// Getting API calls from backend
+
 import AuthenticationService from '../Components/AuthenticationService'
 
 class SignUpRepository
@@ -18,4 +20,4 @@ class SignUpRepository
     }
 }
 
-export default new SignUpRepository()
+export default new SignUpRepository();
