@@ -44,13 +44,15 @@ var x = JSON.parse(new_rating);
         .then((data) => {
             console.log(data);
             setMovies(data.results);
-           
-        });
-        // if (movies.length===0) {
-        //     alert("Enter valid Search Term");
-        // }
-        setSearchTerm('');
+           console.log(data.results.length);
+           if (data.results.length==0) {
+            alert("No results found");
         }
+        });
+        
+        // setSearchTerm('');
+        }
+
         else {
             alert("Enter the Search Term");
         }
