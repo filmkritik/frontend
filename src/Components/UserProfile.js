@@ -60,17 +60,34 @@ const RemoveLikedTVShow = (value) => {
 }
 
 const onFinish = (values) => {
+
+   var uId = getCookie('currentUserId')
     var param = {
       firstname: values.firstname,
       lastname: values.lastname,
       phonenumber: values.phonenumber,
       email: values.email,
-      password: values.password
+      password: values.password,
+      id: uId && uId > 0 ? uId : 0
     }
     console.log(param);
     console.log('onFinish')
-    AuthenticationService.postAPI('updateUserProfile', param);
-    alert("User details updated");
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(param)
+  };
+
+    fetch('http://localhost:8080/UpdateUser', requestOptions)
+    .then(response => {console.log(response); return response.text() ;})
+    .then(data => {
+      if(data+"" == "Success")
+      {
+        alert("User details updated");
+      }
+    });
+    
 
   };
   
@@ -80,103 +97,6 @@ const onFinish = (values) => {
 
 
 useEffect(() => {
-    form.setFieldsValue({
-            firstname: 'Amith Reddy',
-            lastname: 'Nomula',
-            email: 'amithreddynomula@gmail.com',
-            phonenumber: '9405943128',
-            password: 'aeiou',
-            userId: 2
-      });
-
-      // setLikedMovies([
-      //     {
-      //         id: 1,
-      //         name: "Venom: Let There Be Carnage"
-      //     },
-      //     {
-      //       id: 2,
-      //       name: "Eternals"
-      //   },
-      //   {
-      //       id: 3,
-      //       name: "Army of Thieves"
-      //   },
-      //   {
-      //       id: 4,
-      //       name: "Free Guy"
-      //   },
-      //   {
-      //       id: 5,
-      //       name: "Gunpowder Milkshake"
-      //   }
-      // ])
-
-    //   setLikedTVShows([
-    //     {
-    //         id: 1,
-    //         name: "Squid Game"
-    //     },
-    //     {
-    //       id: 2,
-    //       name: "Dark"
-    //   },
-    //   {
-    //       id: 3,
-    //       name: "Money Heist"
-    //   },
-    //   {
-    //       id: 4,
-    //       name: "Prison Break"
-    //   },
-    //   {
-    //       id: 5,
-    //       name: "Breaking Bad"
-    //   }
-    // ])
-    // setWatchList([
-    //     {
-    //         id: 1,
-    //         name: "Venom: Let There Be Carnage"
-    //     },
-    //     {
-    //       id: 2,
-    //       name: "Eternals"
-    //   },
-    //   {
-    //       id: 3,
-    //       name: "Army of Thieves"
-    //   },
-    //   {
-    //       id: 4,
-    //       name: "Free Guy"
-    //   },
-    //   {
-    //       id: 5,
-    //       name: "Gunpowder Milkshake"
-    //   }
-    // ])
-
-  //   setHistory([
-  //     {
-  //         id: 1,
-  //         action_description: "User liked movie: Eternals",
-  //         action_date: '11/11/2021'
-
-  //     },
-  //     {
-  //       id: 2,
-  //       action_description: "User added a movie to watch list: Army of Thieves",
-  //       action_date: '11/11/2021'
-  //   },
-  //   {
-  //       id: 3,
-  //       action_description: "User disliked a movie: Free Guy",
-  //       action_date: '11/11/2021'
-  //   }
-  // ])
-
-
 
     var y = getCookie('likedMovies');
     setLikedMovies(JSON.parse(y))
@@ -191,34 +111,21 @@ useEffect(() => {
     setHistory(JSON.parse(f));
 
 
-    // fetch('http://localhost:8080/getLikedTVShows')
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data);
-    //     setLikedMovies(data.results);
-    // });
+    var currentUserId = getCookie('currentUserId');
 
-    // fetch('http://localhost:8080/getHistory')
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data);
-    //     setHistory(data.results);
-    // });
-
-
-    // fetch('http://localhost:8080/getWatchList')
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data);
-    //     setWatchList(data.results);
-    // });
-
-    // fetch('http://localhost:8080/getUserDetails')
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data);
-    //     setUserDetails(data.results);
-    // });
+    fetch('http://localhost:8080/getUserDetails?userId='+currentUserId)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        form.setFieldsValue({
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.username,
+          phonenumber: data.phoneno,
+          password: data.password,
+          userId: data.id
+    });
+    });
   
 
 }, []);
@@ -296,7 +203,6 @@ return(
           >
             <Input />
           </Form.Item>
-    
           <Form.Item
             label="Password"
             name="password"

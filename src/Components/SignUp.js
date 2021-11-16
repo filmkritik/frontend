@@ -1,13 +1,18 @@
+
 //Signup page 
 
-import React, { Component } from 'react';
+
+import React, { Component, useState } from 'react';
+
 import 'antd/dist/antd.css';
 import { Steps, Button, message, Form, Input, Checkbox, Select, Menu, Dropdown, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import  SignUpRepository from '../Repository/SignUp'
 import { useHistory, Link } from "react-router-dom";
+import { setCookie } from '../Cookies';
 
 const { Option } = Select;
+
 
 class SignUp extends Component {
   constructor(props) {
@@ -23,7 +28,9 @@ class SignUp extends Component {
         genresSelected: '',
         securityQuestions: [],
         genres: [],
-        current: 0
+        current: 0,
+        isUserAlreadyExists: false,
+        regResult: ''
     }
   }
 
@@ -50,6 +57,7 @@ console.log(this.props)
 
 render()
 {
+
     const onFinish = (values) => {
       var param = {
         firstname: values.firstname,
@@ -64,8 +72,27 @@ render()
       }
       console.log(param);
       console.log('onFinish')
-      SignUpRepository.createAccount(param);
-      this.props.history.push('/');
+      
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(param)
+    };
+   
+    fetch('http://localhost:8080/register', requestOptions)
+        .then(response => {console.log(response); return response.text() ;})
+        .then(data => {
+          if(data+"" == "User Already Present")
+          {
+            this.setState({isUserAlreadyExists: true})
+          }
+          else if (!isNaN(this.state.regResult)){    
+            this.setState({isUserAlreadyExists: false}) 
+              setCookie('currentUserId', data+'');
+              this.props.history.push('/');
+          }
+        });
+     
         
     };
     
@@ -82,12 +109,12 @@ render()
     }
     const createAccount = () => {
 
-      
-
     }
     
     return (
+      
         <div className='signup-container'>
+          { this.state.isUserAlreadyExists ? <div className='user-already-present'>User Already Exist</div> : <div></div>}
           <Form
       name="basic"
       labelCol={{
@@ -224,7 +251,9 @@ render()
           span: 16,
         }}
       >
-       <Button type="primary" htmlType="submit" className="create-account">
+
+       <Button type="primary" htmlType="submit" className='create-account'>
+
           Create Account
         </Button>
       </Form.Item>

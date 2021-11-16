@@ -501,6 +501,12 @@ border-style: inherit;
   margin-bottom: 100px;
 }
 
+
 #edit-id{
   padding-left: 1px;
 }
+
+.user-already-present{
+  color: red;
+}
+

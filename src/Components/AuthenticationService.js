@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:8080'
 
 class AuthenticationService {
 
-    async postAPI(route, body)
+    postAPI(route, body)
     {
         // Simple POST request with a JSON body using fetch
         const requestOptions = {
@@ -14,8 +14,15 @@ class AuthenticationService {
         };
         var url = `${API_URL}/${route}`;
         
-        const response = await fetch(url, requestOptions);
-        const data = await response.json();
+        // const response = await fetch(url, requestOptions);
+        // const data = await response.json();
+        // return data;
+
+       
+        fetch(url, requestOptions)
+            .then(response => response.toString())
+            // .then(data => {console.log(data); return data;});
+
     }
 
     async getAPI(route, params)

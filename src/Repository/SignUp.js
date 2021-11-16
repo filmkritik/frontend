@@ -16,7 +16,7 @@ class SignUpRepository
 
     createAccount(params)
     {
-        return AuthenticationService.postAPI('createAccount', params);
+        return AuthenticationService.postAPI('register', params);
     }
 }
 

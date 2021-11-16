@@ -5,6 +5,7 @@ import GoogleLogin from 'react-google-login';
 import { Form, Input, Button, Checkbox} from 'antd';
 import { Link } from 'react-router-dom';
 import HomePage from './HomePage';
+import { setCookie } from "../Cookies";
 //import AuthenticationLogin from "../AuthLoginJWT/AuthenticationLogin";
 
 
@@ -14,6 +15,7 @@ class Login extends Component {
       this.state = {
           username: '',
           password: '',
+          isUserNotExists: false
           //currentUser: null
       };
       // redirect to home if already logged in
@@ -36,6 +38,41 @@ class Login extends Component {
 render() {
   const onFinish = (values) => {
     console.log('Success:', values);
+
+    var url = 'http://localhost:8080/login?username='+values.username+'&pwd='+values.password;
+      
+      // x.then(data => {
+      //   if(data > 0)
+      //   {
+      //     this.props.history.push('/SecurityCode')
+      //   }
+      // });
+      fetch(url)
+      .then(res => res.text())
+      .then(data => {
+         
+          if(!isNaN(data))
+          {
+            var val = parseInt(data);
+            if(val > 0)
+            {
+              this.props.history.push('/home')
+              this.setState({isUserNotExists: false}) 
+              setCookie('currentUserId', val);
+            }
+            else{
+              this.setState({isUserNotExists: true}) 
+            }
+           
+          }
+          else if(data == 'Error: No user found')
+          {
+            this.setState({isUserNotExists: true}) 
+          }
+        })
+        .catch(err => {this.setState({isUserNotExists: true}); console.log(this.state.isUserNotExists);
+          console.log('in error')
+        })
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -45,6 +82,7 @@ render() {
   
  return (
     <div className="Div-form">
+      { this.state.isUserNotExists ? <div className='user-already-present'>User not found</div> : <div></div>}
     <Form className="login-form"
       name="basic"
       labelCol={{
@@ -104,11 +142,11 @@ render() {
           span: 16,
         }}
       >
-        <Link to='/home'>
-        <Button type="primary" htmlType="submit" className="Login-button" onClick="./HomePage.js">
+        
+        <Button type="primary" htmlType="submit" className="Login-button">
           Sign In
         </Button>
-        </Link>
+        
       </Form.Item>
 
       <Form.Item
