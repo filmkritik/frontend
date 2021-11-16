@@ -18,7 +18,10 @@ import {GlobalProvider} from "./Components/WatchList_State";
 import WatchList from "./Components/WatchList";
 import SecurityCode from "./Components/SecurityCode";
 import ConfirmPassword from "./Components/ConfirmPassword";
-import Reviews from "./Components/Reviews";
+import Reviews_movies from "./Components/Reviews_movies";
+import Reviews_Tvshows from "./Components/Reviews_Tvshows";
+import PopularPeopleDetails from "./NavLink_Components/PopularPeople_Details";
+import PeopleDetailsPage from "./NavLink_Components/PeopleDetailsPage";
 
 
 function App() {
@@ -35,6 +38,7 @@ function App() {
             <Route path="/home" exact component={HomePage} />
             <Route path="/home/movies" exact component={MovieGenres} />
             <Route path="/home/tvshows" exact component={TvShowGenres} />
+            <Route path="/home/people/details" exact component={PeopleDetailsPage} />
             <Route path="/home/people" exact component={PopularPeople} />
             <Route path="/home/search" exact component={SearchBar} />
             <Route path="/home/movies/details" exact component={MovieDetails} />
@@ -44,7 +48,9 @@ function App() {
             <Route path="/home/tvshows/details/watchlist" exact component={WatchList} />
             <Route path="/securityCode" exact component={SecurityCode} />
             <Route path="/ConfirmPassword" exact component={ConfirmPassword} />
-            <Route path="/home/movies/details/reviews" exact component={Reviews} />
+            <Route path="/home/movies/details/reviews" exact component={Reviews_movies} />
+            <Route path="/home/tvshows/details/reviews" exact component={Reviews_Tvshows} />
+
 
             </Switch>
         <Footer />

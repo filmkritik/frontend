@@ -27,10 +27,6 @@ export default class Comments extends React.Component {
     
     editComment= (commentID, editedData) => {
 
-      var x = getCookieComment('ReviewComment');
-      var getComment = JSON.parse(x);
-      console.log(getComment);
-
       this.state.comments[commentID].commentBody = editedData;
       this.setState({
         comments: this.state.comments

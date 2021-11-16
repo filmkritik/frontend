@@ -17,13 +17,13 @@ import { getCookieComment } from '../Cookies';
       }    
             
         renderCommentRead = () => {
-          var x = getCookieComment('ReviewComment');
-          var getComment = JSON.parse(x);
-          console.log(getComment);
+          // var x = getCookieComment('ReviewComment');
+          // var getComment = JSON.parse(x);
+          // console.log(getComment);
          return (
            <div className="comment-text">
                 {/* <p>{this.props.details.commentBody}</p> */}
-                <p>{getComment}</p>
+                <p>{this.props.details.commentBody}</p>
            </div>
          ) 
         };
@@ -57,7 +57,7 @@ import { getCookieComment } from '../Cookies';
            <div>
            <div>{console.log(this.props.details.commentBody)}</div>
            <form ref="commentForm" onSubmit={this.editCommentHandler}>
-             <textarea className="text-area-edit" ref="editText" required>{getComment}</textarea>&nbsp;&nbsp;&nbsp;
+             <textarea className="text-area-edit" ref="editText" required>{this.props.details.commentBody}</textarea>&nbsp;&nbsp;&nbsp;
              <button id="submit" type="submit" className="button button-outline comment-button action-button expand-right">Done</button>
            </form>
            </div>

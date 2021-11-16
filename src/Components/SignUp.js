@@ -222,7 +222,7 @@ render()
           span: 16,
         }}
       >
-       <Button type="primary" htmlType="submit">
+       <Button type="primary" htmlType="submit" className="create-account">
           Create Account
         </Button>
       </Form.Item>

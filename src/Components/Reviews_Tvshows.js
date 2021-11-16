@@ -4,14 +4,14 @@ import Navbar from "./Navbar";
 import ReviewCard from "./ReviewCard";
 import Comments from "./Comments";
 
-const Reviews = ({ props }) => {
+const Reviews_Tvshows = ({ props }) => {
 
     const location = useLocation();
     const [ reviews, setReviews ] = useState([]);
         console.log(location.state.id);
 
     useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/movie/${location.state.id}/reviews?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/tv/${location.state.id}/reviews?api_key=04c35731a5ee918f014970082a0088b1&language=en-US&page=1`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -33,4 +33,4 @@ const Reviews = ({ props }) => {
 
 }
 
-export default Reviews;
+export default Reviews_Tvshows;

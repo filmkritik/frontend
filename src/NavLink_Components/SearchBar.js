@@ -42,9 +42,15 @@ var x = JSON.parse(new_rating);
         .then((data) => {
             console.log(data);
             setMovies(data.results);
+           
         });
-        
+        // if (movies.length===0) {
+        //     alert("Enter valid Search Term");
+        // }
         setSearchTerm('');
+        }
+        else {
+            alert("Enter the Search Term");
         }
     };
 
@@ -76,10 +82,9 @@ var x = JSON.parse(new_rating);
                 
                         </div> 
                         <div className='movie-container'>
-                    { movies.length > 0 && movies.slice(0,10).map((movie) => 
-                    <SearchMulti key={movie.id} {...movie} movie_id={movie_id} new_rating={new_rating} />)}
-                </div> 
-                        </div>
+                        {movies.length > 0 && movies.slice(0,10).map((movie) => 
+                    <SearchMulti key={movie.id} {...movie} movie_id={movie_id} new_rating={new_rating} />)}       
+             </div></div>
     );
     }
 

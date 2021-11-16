@@ -6,7 +6,7 @@ import { withRouter,useParams, useLocation, useHistory } from "react-router";
 import CastMovie from "./Cast_Movie";
 
 //import { Rate } from 'antd';
-import Reviews from "./Reviews";
+import Reviews from "./Reviews_movies";
 import { Link } from 'react-router-dom';
 import {setCookie, getCookie } from '../Cookies.js'
 import { FaStar } from "react-icons/fa";

@@ -229,14 +229,18 @@ console.log(watchListDisabled);
                 >
                             Add to WatchList
                         </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <Link to='/home/movies/details/reviews'>
-                        <button>
+                        <Link to= {{
+                            pathname: "/home/tvshows/details/reviews",
+                            state: {id: location.state.id,
+                            name: location.state.name,
+                            poster_path: location.state.poster_path, 
+                            vote_average: location.state.vote_average
+                            }
+                            }}>
+                         <button>
                             Review
                         </button>
-                        </Link>
-                        {/* <button className="MovierButton">
-                            Movie
-                        </button> */}
+                        </Link>      
                     </li>
                 </ul>
                 </div>
